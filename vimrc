@@ -36,23 +36,8 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " set dark background and color scheme
 " set background=dark
-colorscheme railscasts
-
-" set up some custom colors
-highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-highlight LineNr       ctermbg=236 ctermfg=7
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1
+colorscheme codeschool
+set t_Co=256
 
 " highlight the status bar when in insert mode
 if version >= 700
@@ -77,9 +62,6 @@ let g:ctrlp_max_height = 30
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 
-" use silver searcher for ctrlp
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
 " unmap F1 help
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
@@ -101,12 +83,6 @@ map <leader>i :gg=G<cr>
 
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
-
-" map Silver Searcher
-map <leader>a :Ag!<space>
-
-" search for word under cursor with Silver Searcher
-map <leader>A :Ag! "<C-r>=expand('<cword>')<CR>"
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
