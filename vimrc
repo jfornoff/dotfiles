@@ -35,9 +35,9 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " set dark background and color scheme
-" set background=dark
-colorscheme codeschool
-set t_Co=256
+set background=dark
+colorscheme base16-railscasts
+set t_Co=16
 
 " highlight the status bar when in insert mode
 if version >= 700
