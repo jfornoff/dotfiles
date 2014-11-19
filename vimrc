@@ -29,15 +29,22 @@ set nofoldenable                  " disable code folding
 set clipboard=unnamed             " use the system clipboard
 set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
+set cursorline
+set relativenumber
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 " put git status, column/row number, total lines, and percentage in status
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
+"" APPEARANCE
 " set dark background and color scheme
 set background=dark
-colorscheme base16-railscasts
-set t_Co=16
+colorscheme railscasts
+set t_Co=256
+
+hi CursorLineNR ctermfg=green
+highlight LineNr ctermfg=grey
+"" END APPEARANCE
 
 " highlight the status bar when in insert mode
 if version >= 700
@@ -93,11 +100,6 @@ imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " add :Plain command for converting text to plaintext
 command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
-
-" hint to keep lines short
-if exists('+colorcolumn')
-  set colorcolumn=80
-endif
 
 " execute current file
 map <leader>e :call ExecuteFile(expand("%"))<cr>

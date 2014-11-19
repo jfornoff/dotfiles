@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/wrkfan/rails_projects/ruote-test/app/models'
 let g:netrw_dirhist_2='/home/wrkfan/rails_projects/ruote-test/app/models/qgen'
 let g:netrw_dirhist_3='/home/wrkfan/rails_projects/ruote-test/app/models/question_types'
+let g:netrw_dirhist_4='/home/wrkfan/rails_projects/ruote-test/app/views/qgen/questions'
