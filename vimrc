@@ -86,7 +86,7 @@ map <leader>m :!open -a Marked %<cr><cr>
 map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
-map <leader>i :gg=G<cr>
+map <leader>i gg=G
 
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
