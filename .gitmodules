@@ -22,3 +22,12 @@
 [submodule "vim/bundle/vim-ruby-refactoring"]
 	path = vim/bundle/vim-ruby-refactoring
 	url = https://github.com/ecomba/vim-ruby-refactoring
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = http://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = http://github.com/honza/vim-snippets.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = http://github.com/ervandew/supertab.git
