@@ -10,7 +10,7 @@ filetype plugin indent on
 set autoindent                    " set auto indent
 set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
-set number
+set number                        " Line numbers!
 set expandtab                     " use spaces, not tab characters
 set nocompatible                  " don't need to be compatible with old vim
 set showmatch                     " show bracket matches
@@ -29,8 +29,8 @@ set nofoldenable                  " disable code folding
 set clipboard=unnamed             " use the system clipboard
 set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
-set cursorline
-set relativenumber
+set cursorline                    " Where the hell is my cursor o_o
+set relativenumber                " Motions are much easier with relnum
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 " put git status, column/row number, total lines, and percentage in status
@@ -42,6 +42,7 @@ set background=dark
 colorscheme railscasts
 set t_Co=256
 
+" Custom colors
 hi CursorLineNR ctermfg=green
 highlight LineNr ctermfg=grey
 "" END APPEARANCE
@@ -69,6 +70,8 @@ let g:ctrlp_max_height = 30
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 
+nnoremap <leader>h :CtrlPBuffer<cr>   " Fuzzy buffer searching
+
 " unmap F1 help
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
@@ -76,16 +79,12 @@ imap <F1> <C-o>:echo<CR>
 " map . in visual mode
 vnoremap . :norm.<cr>
 
-" die hash rockets, die!
-vnoremap <leader>h :s/:\(\w*\) *=>/\1:/g<cr>
-
-" map markdown preview
-map <leader>m :!open -a Marked %<cr><cr>
-
 " map git commands
 map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
+
+" Reindent whole file
 map <leader>i gg=G
 
 " open gist after it's been created
@@ -93,10 +92,6 @@ let g:gist_open_browser_after_post = 1
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
-
-" toggle spell check with <F5>
-map <F5> :setlocal spell! spelllang=en_us<cr>
-imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " add :Plain command for converting text to plaintext
 command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
@@ -124,18 +119,6 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
   \ endif
-
-" multi-purpose tab key (auto-complete)
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
 
 " rename current file, via Gary Bernhardt
 function! RenameFile()
