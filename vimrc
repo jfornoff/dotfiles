@@ -64,6 +64,16 @@ autocmd BufWinLeave * call clearmatches()
 " set leader key to comma
 let mapleader = ","
 
+" Silver searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
 " ctrlp config
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_max_height = 30
@@ -177,7 +187,7 @@ endfunction
 
 function! RunNearestTest()
   let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number . " -b")
+  call RunTestFile(":" . spec_line_number)
 endfunction
 
 " run test runner
