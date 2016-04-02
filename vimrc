@@ -37,15 +37,16 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 "" APPEARANCE
 " set dark background and color scheme
-set background=dark
-colorscheme railscasts
 set t_Co=256
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
-" Custom colors
-hi CursorLineNR ctermfg=green
-highlight LineNr ctermfg=grey
-"" END APPEARANCE
-
+" ruler at 80 characters
+if (exists('+colorcolumn'))
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=8
+endif
 " highlight the status bar when in insert mode
 if version >= 700
   au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
@@ -59,6 +60,9 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+"" END APPEARANCE
+
+
 
 " set leader key to comma
 let mapleader = ","
