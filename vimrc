@@ -8,6 +8,7 @@ call pathogen#helptags()
 syntax on                         " show syntax highlighting
 filetype plugin indent on
 set autoindent                    " set auto indent
+set fileformat=unix
 set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
 set number                        " Line numbers!
