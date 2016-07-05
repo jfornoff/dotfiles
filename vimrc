@@ -63,8 +63,6 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 "" END APPEARANCE
 
-
-
 " set leader key to comma
 let mapleader = ","
 
@@ -101,38 +99,8 @@ map <leader>d :!clear && git diff %<cr>
 " Reindent whole file
 map <leader>i gg=G
 
-" open gist after it's been created
-let g:gist_open_browser_after_post = 1
-
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
-
-" add :Plain command for converting text to plaintext
-command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
-
-" execute current file
-map <leader>e :call ExecuteFile(expand("%"))<cr>
-
-" execute file if we know how
-function! ExecuteFile(filename)
-  :w
-  :silent !clear
-  if match(a:filename, '\.rb$') != -1
-    exec ":!ruby " . a:filename
-  elseif match(a:filename, '\.js$') != -1
-    exec ":!node " . a:filename
-  elseif match(a:filename, '\.sh$') != -1
-    exec ":!bash " . a:filename
-  else
-    exec ":!echo \"Don't know how to execute: \"" . a:filename
-  end
-endfunction
-
-" jump to last position in file
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
 
 " rename current file, via Gary Bernhardt
 function! RenameFile()
@@ -146,56 +114,11 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-function! RunTests(filename)
-  " Write the file and run tests for the given filename
-  :w
-  :silent !clear
-  if match(a:filename, '\.feature$') != -1
-    exec ":!bundle exec cucumber " . a:filename
-  elseif match(a:filename, '_test\.rb$') != -1
-    if filereadable("bin/testrb")
-      exec ":!bin/testrb " . a:filename
-    else
-      exec ":!ruby -Itest " . a:filename
-    end
-  else
-    if filereadable("Gemfile")
-      exec ":!bundle exec spring rspec --color " . a:filename
-    else
-      exec ":!spring rspec --color " . a:filename
-    end
-  end
-endfunction
+" Vim-rspec bindings
+let g:rspec_command = ":Dispatch rspec --format progress {spec}"
+map <leader>t :call RunCurrentSpecFile()<cr>
+map <leader>T :call RunNearestSpec()<cr>
+map <leader>a :Dispatch! spring rspec spec<cr>
 
-function! SetTestFile()
-  " set the spec file that tests will be run for.
-  let t:grb_test_file=@%
-endfunction
-
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
-
-  " run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-  elseif !exists("t:grb_test_file")
-    return
-  end
-  call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number)
-endfunction
-
-" run test runner
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-
-nnoremap <silent> ,gf :vertical botright wincmd f<CR>
+" Close quickfix window
+map <leader>c :ccl<cr>
