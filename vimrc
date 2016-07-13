@@ -115,7 +115,7 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 " Vim-rspec bindings
-let g:rspec_command = ":Dispatch rspec --format progress {spec}"
+let g:rspec_command = ":Dispatch spring rspec --format progress {spec}"
 map <leader>t :call RunCurrentSpecFile()<cr>
 map <leader>T :call RunNearestSpec()<cr>
 map <leader>a :Dispatch! spring rspec spec<cr>
