@@ -25,13 +25,17 @@ set ruler                         " show row and column in footer
 set scrolloff=2                   " minimum lines above/below cursor
 set laststatus=2                  " always show status bar
 set list listchars=tab:»·,trail:· " show extra space characters
-set nofoldenable                  " disable code folding
 set clipboard=unnamed             " use the system clipboard
 set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
 set cursorline                    " Where the hell is my cursor o_o
 set relativenumber                " Motions are much easier with relnum
 runtime macros/matchit.vim        " use % to jump between start/end of methods
+
+" Fold settings
+set foldenable                    " enable folds
+set foldmethod=indent
+set foldlevelstart=1
 
 " put git status, column/row number, total lines, and percentage in status
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
@@ -115,7 +119,7 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 " Vim-rspec bindings
-let g:rspec_command = ":Dispatch spring rspec --format progress {spec}"
+let g:rspec_command = ":Dispatch bin/rspec --format progress {spec}"
 map <leader>t :call RunCurrentSpecFile()<cr>
 map <leader>T :call RunNearestSpec()<cr>
 map <leader>a :Dispatch! spring rspec spec<cr>
