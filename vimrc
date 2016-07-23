@@ -37,9 +37,6 @@ set foldenable                    " enable folds
 set foldmethod=indent
 set foldlevelstart=1
 
-" put git status, column/row number, total lines, and percentage in status
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
-
 "" APPEARANCE
 " set dark background and color scheme
 set t_Co=256
@@ -52,11 +49,6 @@ if (exists('+colorcolumn'))
   set colorcolumn=80
   highlight ColorColumn ctermbg=8
 endif
-" highlight the status bar when in insert mode
-if version >= 700
-  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
-  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
-endif
 
 " highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
@@ -65,6 +57,10 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Airline
+let g:airline_theme='simple'
+
 "" END APPEARANCE
 
 " set leader key to comma
