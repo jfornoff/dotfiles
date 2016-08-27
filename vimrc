@@ -1,4 +1,4 @@
-" .vimrc
+" General {{{
 set encoding=utf-8
 
 " load up pathogen and all bundles
@@ -30,14 +30,18 @@ set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
 set cursorline                    " Where the hell is my cursor o_o
 set relativenumber                " Motions are much easier with relnum
+set modelines=1                   " Allow settings from vim comments in files
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
-" Fold settings
+" }}}
+
+" Fold settings {{{
 set foldenable                    " enable folds
 set foldmethod=indent
 set foldlevelstart=1
+" }}}
 
-"" APPEARANCE
+" Appearance {{{
 " set dark background and color scheme
 set t_Co=256
 let g:solarized_termcolors=256
@@ -61,11 +65,9 @@ autocmd BufWinLeave * call clearmatches()
 " Airline
 let g:airline_theme='simple'
 
-"" END APPEARANCE
+" }}}
 
-" set leader key to comma
-let mapleader = ","
-
+" Navigation {{{
 " Silver searcher
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
@@ -84,12 +86,24 @@ let g:ctrlp_match_window_reversed = 0
 
 nnoremap <leader>h :CtrlPBuffer<cr>   " Fuzzy buffer searching
 
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR>
+
+" }}}
+
+" Keybindings {{{
 " unmap F1 help
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
 " map . in visual mode
 vnoremap . :norm.<cr>
+" }}}
+
+" Leader commands {{{
+
+" set leader key to comma
+let mapleader = ","
 
 " map git commands
 map <leader>b :Gblame<cr>
@@ -98,9 +112,6 @@ map <leader>d :!clear && git diff %<cr>
 
 " Reindent whole file
 map <leader>i gg=G
-
-" clear the command line and search highlighting
-noremap <C-l> :nohlsearch<CR>
 
 " rename current file, via Gary Bernhardt
 function! RenameFile()
@@ -114,11 +125,15 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" Vim-rspec bindings
+" Close quickfix window
+map <leader>c :ccl<cr>
+" }}}
+
+" Vim-RSpec {{{
 let g:rspec_command = ":Dispatch bin/rspec --format progress {spec}"
 map <leader>t :call RunCurrentSpecFile()<cr>
 map <leader>T :call RunNearestSpec()<cr>
 map <leader>a :Dispatch! spring rspec spec<cr>
+" }}}
 
-" Close quickfix window
-map <leader>c :ccl<cr>
+" vim:foldmethod=marker:foldlevel=0
