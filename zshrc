@@ -7,6 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="ys"
 
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -45,7 +46,12 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git vi-mode)
+
+# VI Mode
+export KEYTIMEOUT=1
+bindkey '^r' history-incremental-search-backward
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 
 # Enable Z
-. ~/bin/z/z.sh
+. ~/dotfiles/z/z.sh
 
 function dockercleanimages {
   docker rmi -f $(docker images -q -f dangling=true)
