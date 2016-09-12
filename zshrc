@@ -48,12 +48,11 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode)
 
+source $ZSH/oh-my-zsh.sh
+
 # VI Mode
 export KEYTIMEOUT=1
 bindkey '^r' history-incremental-search-backward
-
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -87,9 +86,7 @@ source $ZSH/oh-my-zsh.sh
 function dockercleanimages {
   docker rmi -f $(docker images -q -f dangling=true)
 }
-export -f dockercleanimages
 
 function dockercleancontainers {
   docker rm $(docker ps -a -q)
 }
-export -f dockercleancontainers
