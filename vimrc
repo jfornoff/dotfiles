@@ -67,39 +67,6 @@ let g:airline_theme='simple'
 
 " }}}
 
-" Navigation {{{
-" Silver searcher
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
-
-" ctrlp config
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_max_height = 30
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 0
-
-nnoremap <leader>h :CtrlPBuffer<cr>   " Fuzzy buffer searching
-
-" clear the command line and search highlighting
-noremap <C-l> :nohlsearch<CR>
-
-" }}}
-
-" Keybindings {{{
-" unmap F1 help
-nmap <F1> :echo<CR>
-imap <F1> <C-o>:echo<CR>
-
-" map . in visual mode
-vnoremap . :norm.<cr>
-" }}}
-
 " Leader commands {{{
 
 " set leader key to comma
@@ -108,7 +75,6 @@ let mapleader = ","
 " map git commands
 map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
-map <leader>d :!clear && git diff %<cr>
 
 " Reindent whole file
 map <leader>i gg=G
@@ -129,6 +95,41 @@ map <leader>n :call RenameFile()<cr>
 map <leader>c :ccl<cr>
 " }}}
 
+" Navigation {{{
+" Silver searcher
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+" ctrlp config
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_max_height = 30
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+
+" Fuzzy buffer searching
+nnoremap <leader>h :CtrlPBuffer<cr>
+
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR>
+
+" }}}
+
+" Keybindings {{{
+" unmap F1 help
+nmap <F1> :echo<CR>
+imap <F1> <C-o>:echo<CR>
+
+" map . in visual mode
+vnoremap . :norm.<cr>
+" }}}
+
+
 " Vim-RSpec {{{
 let g:rspec_command = ":Dispatch bin/rspec --format progress {spec}"
 map <leader>t :call RunCurrentSpecFile()<cr>
@@ -139,5 +140,20 @@ map <leader>a :Dispatch! spring rspec spec<cr>
 " CTags {{{
 map <leader>ct :Dispatch! ctags
 " }}}
+
+" Elm {{{
+let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
+let g:elm_detailed_complete = 1
+
+au FileType elm nnoremap <leader>m :ElmMake<cr>
+au FileType elm nnoremap <leader>d :ElmShowDocs<cr>
+au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
+" }}}
+
 
 " vim:foldmethod=marker:foldlevel=0

@@ -55,3 +55,6 @@
 [submodule "z"]
 	path = z
 	url = https://github.com/rupa/z
+[submodule "vim/bundle/elm-vim"]
+	path = vim/bundle/elm-vim
+	url = https://github.com/ElmCast/elm-vim
