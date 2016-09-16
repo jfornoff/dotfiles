@@ -136,4 +136,8 @@ map <leader>T :call RunNearestSpec()<cr>
 map <leader>a :Dispatch! spring rspec spec<cr>
 " }}}
 
+" CTags {{{
+map <leader>ct :Dispatch! ctags
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
