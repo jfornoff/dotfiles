@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+ZSH_THEME="miloshadzic"
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -90,3 +90,9 @@ function dockercleanimages {
 function dockercleancontainers {
   docker rm $(docker ps -a -q)
 }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# Source secrets files
+for f in ~/secrets/*; do source $f; done
+alias rake='noglob rake'
