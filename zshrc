@@ -91,7 +91,7 @@ function dockercleancontainers {
   docker rm $(docker ps -a -q)
 }
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Source secrets files
 for f in ~/secrets/*; do source $f; done
