@@ -97,7 +97,11 @@ map <leader>c :ccl<cr>
 
 " Navigation {{{
 " Silver searcher
-if executable('ag')
+if executable('rg')
+  set grepprg=rg\ --color=never\ --vimgrep
+  let g:ctrlp_user_command = 'rg %s --files -g ""'
+  let g:ctrlp_use_caching = 0
+elseif executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
