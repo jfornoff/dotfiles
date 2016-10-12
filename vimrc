@@ -159,5 +159,8 @@ au FileType elm nnoremap <leader>d :ElmShowDocs<cr>
 au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 " }}}
 
+" Snippets {{{
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
