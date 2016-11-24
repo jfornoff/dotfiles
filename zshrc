@@ -46,7 +46,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode ubuntu)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,4 +95,8 @@ export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Source secrets files
 for f in ~/secrets/*; do source $f; done
+
+# Source additional shell configs
+for f in ~/.conf.rc/*; do source $f; done
+
 alias rake='noglob rake'
