@@ -1,9 +1,32 @@
 " General {{{
 set encoding=utf-8
+set nocompatible                  " don't need to be compatible with old vim
+filetype off
 
-" load up pathogen and all bundles
-call pathogen#infect()
-call pathogen#helptags()
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'VundleVim/Vundle.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'ElmCast/elm-vim'
+Plug 'mattn/emmet-vim'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'jfornoff/vim-rails'
+Plug 'thoughtbot/vim-rspec'
+Plug 'vim-ruby/vim-ruby'
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+
+call plug#end()
 
 syntax on                         " show syntax highlighting
 filetype plugin indent on
@@ -13,7 +36,6 @@ set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
 set number                        " Line numbers!
 set expandtab                     " use spaces, not tab characters
-set nocompatible                  " don't need to be compatible with old vim
 set showmatch                     " show bracket matches
 set ignorecase                    " ignore case in search
 set hlsearch                      " highlight all search matches
