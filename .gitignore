@@ -1,5 +1,6 @@
 vim/view
 vim/.netrwhist
 vim/custom_snippets/work.snippets
+vim/plugged
 
 conf.rc/work
