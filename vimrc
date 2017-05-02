@@ -6,6 +6,7 @@ filetype off
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'sheerun/vim-polyglot'
 Plug 'VundleVim/Vundle.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'ElmCast/elm-vim'
@@ -20,12 +21,12 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'jfornoff/vim-rails'
 Plug 'thoughtbot/vim-rspec'
-Plug 'vim-ruby/vim-ruby'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
+Plug 'slashmili/alchemist.vim'
 
 call plug#end()
 
