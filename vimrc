@@ -26,6 +26,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
+Plug 'splattael/rufo-vim'
 
 call plug#end()
 
