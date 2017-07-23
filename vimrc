@@ -27,7 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'slashmili/alchemist.vim'
-Plug 'splattael/rufo-vim'
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 
@@ -188,4 +188,12 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 " }}}
 
+" Neoformat {{{
+let g:neoformat_elixir_exfmt = {
+      \ 'exe': 'mix',
+      \ 'args': ['exfmt']
+      \ }
+
+let g:neoformat_enabled_elixir = ['exfmt']
+" }}}
 " vim:foldmethod=marker:foldlevel=0
