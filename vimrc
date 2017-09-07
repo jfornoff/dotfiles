@@ -7,7 +7,6 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
-Plug 'VundleVim/Vundle.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'mattn/emmet-vim'
@@ -20,7 +19,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'jfornoff/vim-rails'
-Plug 'thoughtbot/vim-rspec'
+Plug 'janko-m/vim-test'
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
@@ -28,6 +27,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'slashmili/alchemist.vim'
 Plug 'sbdchd/neoformat'
+Plug 'tpope/vim-projectionist'
 
 call plug#end()
 
@@ -159,11 +159,10 @@ vnoremap . :norm.<cr>
 " }}}
 
 
-" Vim-RSpec {{{
-let g:rspec_command = ":Dispatch bin/rspec --format progress {spec}"
-map <leader>t :call RunCurrentSpecFile()<cr>
-map <leader>T :call RunNearestSpec()<cr>
-map <leader>a :Dispatch! spring rspec spec<cr>
+" Vim-Test {{{
+let test#strategy = "dispatch"
+nmap <silent> <leader>T :TestNearest<CR>
+nmap <silent> <leader>t :TestFile<CR>
 " }}}
 
 " CTags {{{
@@ -182,6 +181,10 @@ let g:elm_detailed_complete = 1
 au FileType elm nnoremap <leader>m :ElmMake<cr>
 au FileType elm nnoremap <leader>d :ElmShowDocs<cr>
 au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
+" }}}
+
+" Elixir {{{
+let g:alchemist#extended_autocomplete = 1
 " }}}
 
 " Snippets {{{

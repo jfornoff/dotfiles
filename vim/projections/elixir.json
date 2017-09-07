@@ -1,0 +1,21 @@
+{
+  "lib/*.ex": {
+    "command": "lib",
+    "template": [
+      "defmodule {camelcase|capitalize|dot} do",
+      "end"
+    ],
+    "type": "source",
+    "alternate": "test/{}_test.exs"
+  },
+  "test/*_test.exs": {
+    "command": "test",
+    "template": [
+      "defmodule {camelcase|capitalize|dot}Test do",
+      "  use ExUnit.Case, async: true",
+      "end"
+    ],
+    "type": "test",
+    "alternate": "test/{}_test.exs"
+  }
+}
