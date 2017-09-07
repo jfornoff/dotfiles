@@ -196,5 +196,11 @@ let g:neoformat_elixir_exfmt = {
       \ }
 
 let g:neoformat_enabled_elixir = ['exfmt']
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
 " }}}
 " vim:foldmethod=marker:foldlevel=0
