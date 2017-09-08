@@ -16,6 +16,6 @@
       "end"
     ],
     "type": "test",
-    "alternate": "test/{}_test.exs"
+    "alternate": "lib/{}.ex"
   }
 }
