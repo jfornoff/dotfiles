@@ -90,7 +90,6 @@ autocmd BufWinLeave * call clearmatches()
 
 " Airline
 let g:airline_theme='simple'
-
 " }}}
 
 " Leader commands {{{
@@ -164,6 +163,9 @@ vnoremap . :norm.<cr>
 let test#strategy = "dispatch"
 nmap <silent> <leader>T :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+
+let test#ruby#rspec#options = '--format progress'
 " }}}
 
 " CTags {{{
