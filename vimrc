@@ -28,6 +28,7 @@ Plug 'w0rp/ale'
 Plug 'slashmili/alchemist.vim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-projectionist'
+Plug 'raimondi/delimitmate'
 
 call plug#end()
 
