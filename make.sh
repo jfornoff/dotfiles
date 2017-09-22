@@ -9,7 +9,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old/
-files="zshrc vimrc vim tmux.conf conf.rc"
+files="zshrc vimrc vim tmux.conf conf.rc secrets"
 
 ### Create backup folder for old dotfiles
 echo "Creating $olddir for backup of any existing dotfiles in ~"
