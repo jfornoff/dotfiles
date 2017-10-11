@@ -17,5 +17,15 @@
     ],
     "type": "test",
     "alternate": "lib/{}.ex"
+  },
+  "test/*_spec.exs": {
+    "command": "spec",
+    "template": [
+      "defmodule {camelcase|capitalize|dot}Spec do",
+      "  use ESpec, async: true",
+      "end"
+    ],
+    "type": "test",
+    "alternate": "lib/{}.ex"
   }
 }
