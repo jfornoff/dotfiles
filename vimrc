@@ -197,12 +197,19 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 " Neoformat {{{
 let g:neoformat_elixir_format = {
       \ 'exe': 'mix',
-      \ 'args': ['format', '--print'],
+      \ 'args': ['format', '--print', "--dot-formatter", ".formatter.exs"],
       \ 'stdin': 0
       \ }
 
-let g:neoformat_enabled_elixir = ['format']
+let g:neoformat_enabled_elixir = ["format"]
 
+let g:neoformat_markdown_remark = {
+  \ 'exe': 'remark',
+  \ 'args': ['--no-color', '--silent', '--use', 'remark-frontmatter'],
+  \ 'stdin': 1
+  \ }
+
+let g:neoformat_enabled_markdown = []
 
 augroup fmt
   autocmd!
