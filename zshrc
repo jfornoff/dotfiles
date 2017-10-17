@@ -100,3 +100,8 @@ for f in ~/.secrets/*; do source $f; done
 for f in ~/.conf.rc/*; do source $f; done
 
 alias rake='noglob rake'
+
+. $HOME/.asdf/asdf.sh
+
+alias pairsession-open='tmux -2 -S /tmp/pair new-session -t pair -d && chown $(whoami):pair /tmp/pair && pairsession-attach'
+alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
