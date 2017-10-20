@@ -191,7 +191,8 @@ let g:alchemist#extended_autocomplete = 1
 " }}}
 
 " Snippets {{{
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
+let g:UltiSnipsSnippetsDir="~/.vim/snippets"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
 
 let g:neoformat_markdown_remark = {

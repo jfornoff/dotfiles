@@ -1,0 +1,35 @@
+# ESpec
+snippet let "Oneline let"
+	let ${1}: ${0}
+#
+snippet letb "Let block"
+	let :${1} do
+		${0}
+	end
+#
+snippet desc "Describe"
+	describe "${0}" do
+	end
+#
+snippet cont "Context"
+	context "${0}" do
+	end
+#
+snippet it "It"
+	it "${0}" do
+	end
+#
+snippet sub "Oneline subject"
+	subject do: ${0}
+#
+snippet subb "Subject block"
+	subject do
+		${0}
+	end
+#
+snippet exp "Expect"
+	expect ${1} |> to(${0})
+#
+snippet expeql "Expect eql"
+	expect ${1} |> to(eql ${0})
+
