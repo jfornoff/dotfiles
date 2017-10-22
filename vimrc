@@ -29,6 +29,7 @@ Plug 'slashmili/alchemist.vim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-projectionist'
 Plug 'raimondi/delimitmate'
+Plug 'parkr/vim-jekyll'
 
 call plug#end()
 
