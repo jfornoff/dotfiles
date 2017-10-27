@@ -7,7 +7,8 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'mattn/emmet-vim'
 Plug 'ervandew/supertab'
@@ -136,14 +137,11 @@ endif
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
-" ctrlp config
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_max_height = 30
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 0
-
-" Fuzzy buffer searching
-nnoremap <leader>h :CtrlPBuffer<cr>
+" FZF
+let g:fzf_tags_command = 'ctags -R'
+nmap <leader>f :GitFiles<cr>
+nnoremap <leader>h :Buffers<cr>
+nnoremap <leader>g :Tags<cr>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
@@ -189,6 +187,11 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 " Elixir {{{
 let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
+nmap gf :call ExGoToDef()<cr>
+
+function! ExGoToDef()
+  execute 'ExDef' expand('<cWORD>')
+endfunction
 
 function! OpenCallersInQuickfix(query)
   pyfile ~/.vim/custom_functions/mix-xref-callers.py

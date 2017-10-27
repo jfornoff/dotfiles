@@ -101,7 +101,9 @@ for f in ~/.conf.rc/*; do source $f; done
 
 alias rake='noglob rake'
 
-. $HOME/.asdf/asdf.sh
-
-alias pairsession-open='tmux -2 -S /tmp/pair new-session -t pair -d && chown $(whoami):pair /tmp/pair && pairsession-attach'
+alias pairsession-open='tmux -2 -S /tmp/pair new-session -t pair -s pair -d && chown $(whoami):pair /tmp/pair && pairsession-attach'
 alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
+alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
