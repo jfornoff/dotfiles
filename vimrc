@@ -159,7 +159,6 @@ imap <F1> <C-o>:echo<CR>
 vnoremap . :norm.<cr>
 " }}}
 
-
 " Vim-Test {{{
 let test#strategy = "dispatch"
 nmap <silent> <leader>T :TestNearest<CR>
@@ -189,6 +188,13 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 
 " Elixir {{{
 let g:alchemist#extended_autocomplete = 1
+let g:alchemist_tag_map = '<C-d>'
+
+function! OpenCallersInQuickfix(query)
+  pyfile ~/.vim/custom_functions/mix-xref-callers.py
+endfunction
+
+command! -nargs=1 Callers :call OpenCallersInQuickfix(<f-args>)
 " }}}
 
 " Snippets {{{
