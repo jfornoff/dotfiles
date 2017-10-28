@@ -199,6 +199,21 @@ endfunction
 
 command! -nargs=1 -complete=customlist,elixircomplete#ex_doc_complete Callers
       \ :call OpenCallersInQuickfix(<f-args>)
+
+function! UmbrellaToLib(input, o) abort
+  return substitute(a:input, 'spec', 'lib', '')
+endfunction
+
+function! UmbrellaToSpec(input, o) abort
+  return substitute(a:input, 'lib', 'spec', '')
+endfunction
+
+function! AddProjectionistTransformations()
+  let g:projectionist_transformations.umbrellaToLib = function('UmbrellaToLib')
+  let g:projectionist_transformations.umbrellaToSpec = function('UmbrellaToSpec')
+endfunction
+
+autocmd User ProjectionistActivate call AddProjectionistTransformations()
 " }}}
 
 " Snippets {{{
