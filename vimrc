@@ -197,7 +197,8 @@ function! OpenCallersInQuickfix(query)
   pyfile ~/.vim/custom_functions/mix-xref-callers.py
 endfunction
 
-command! -nargs=1 Callers :call OpenCallersInQuickfix(<f-args>)
+command! -nargs=1 -complete=customlist,elixircomplete#ex_doc_complete Callers
+      \ :call OpenCallersInQuickfix(<f-args>)
 " }}}
 
 " Snippets {{{
