@@ -101,7 +101,6 @@ let mapleader = ","
 
 " map git commands
 map <leader>b :Gblame<cr>
-map <leader>l :!clear && git log -p %<cr>
 
 " Reindent whole file
 map <leader>i gg=G
@@ -139,6 +138,7 @@ nnoremap \ :Ag<SPACE>
 
 " FZF
 let g:fzf_tags_command = 'ctags -R'
+map <leader>l :Lines<cr>
 nmap <leader>f :GitFiles<cr>
 nnoremap <leader>h :Buffers<cr>
 nnoremap <leader>g :Tags<cr>
@@ -200,20 +200,6 @@ endfunction
 command! -nargs=1 -complete=customlist,elixircomplete#ex_doc_complete Callers
       \ :call OpenCallersInQuickfix(<f-args>)
 
-function! UmbrellaToLib(input, o) abort
-  return substitute(a:input, 'spec', 'lib', '')
-endfunction
-
-function! UmbrellaToSpec(input, o) abort
-  return substitute(a:input, 'lib', 'spec', '')
-endfunction
-
-function! AddProjectionistTransformations()
-  let g:projectionist_transformations.umbrellaToLib = function('UmbrellaToLib')
-  let g:projectionist_transformations.umbrellaToSpec = function('UmbrellaToSpec')
-endfunction
-
-autocmd User ProjectionistActivate call AddProjectionistTransformations()
 " }}}
 
 " Snippets {{{
