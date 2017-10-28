@@ -6,7 +6,10 @@
       "end"
     ],
     "type": "source",
-    "alternate": "test/{}_test.exs"
+    "alternate": [
+      "test/{}_test.exs",
+      "spec/{}_spec.exs"
+    ]
   },
   "test/*_test.exs": {
     "command": "test",
