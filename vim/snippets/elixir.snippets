@@ -7,6 +7,11 @@ snippet letb "Let block"
 		${0}
 	end
 #
+snippet bef "Before"
+	before do
+		${1}
+		{:shared, ${0}}
+	end
 snippet desc "Describe"
 	describe "${0}" do
 	end
