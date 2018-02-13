@@ -31,6 +31,8 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-projectionist'
 Plug 'raimondi/delimitmate'
 Plug 'parkr/vim-jekyll'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -199,13 +201,31 @@ endfunction
 
 command! -nargs=1 -complete=customlist,elixircomplete#ex_doc_complete Callers
       \ :call OpenCallersInQuickfix(<f-args>)
+" }}}
 
+" Rust {{{
+let g:racer_cmd = "/Users/jfornoff/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+" }}}
+
+" LaTeX {{{
+let g:tex_flavor='latex'
 " }}}
 
 " Snippets {{{
 let g:UltiSnipsSnippetsDir="~/.vim/snippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
+"
+
+let g:neoformat_elixir_elixirfmt = {
+  \ 'env': ['ASDF_ELIXIR_VERSION=1.6.0'],
+  \ 'exe': 'mix',
+  \ 'args': ['format', '-'],
+  \ 'stdin': 1
+  \ }
+
+let g:neoformat_enabled_elixir = ['elixirfmt']
 
 let g:neoformat_markdown_remark = {
   \ 'exe': 'remark',
@@ -219,6 +239,4 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
-
-" }}}
 " vim:foldmethod=marker:foldlevel=0
