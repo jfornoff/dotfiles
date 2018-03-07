@@ -46,7 +46,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(asdf dotenv git vi-mode ubuntu zsh-autosuggestions)
+plugins=(asdf dotenv git vi-mode ubuntu zsh-autosuggestions kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,5 +105,7 @@ alias pairsession-open='tmux -2 -S /tmp/pair new-session -t pair -s pair -d && c
 alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
+
+alias gcof='git branch | fzf | xargs -n1 git checkout'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
