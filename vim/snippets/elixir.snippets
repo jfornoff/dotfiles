@@ -38,3 +38,8 @@ snippet exp "Expect"
 snippet expeql "Expect eql"
 	expect ${1} |> to(eql ${0})
 
+snippet tc "TC"
+	{time, ${2}} = :timer.tc(fn ->
+		${1}
+	end)
+	Logger.warn("Time taken for ${0}: #{time / 1000}")

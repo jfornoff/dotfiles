@@ -172,6 +172,10 @@ let test#ruby#rspec#options = '--format progress'
 map <leader>ct :Dispatch! ctags
 " }}}
 
+" Quick Server {{{
+map <leader>sv :Dispatch python -m SimpleHTTPServer 8000
+"}}}
+
 " Elm {{{
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
@@ -189,7 +193,7 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 " Elixir {{{
 let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
-nmap gf :call ExGoToDef()<cr>
+au FileType elixir nnoremap gf :call ExGoToDef()<cr>
 
 function! ExGoToDef()
   execute 'ExDef' expand('<cWORD>')
@@ -210,6 +214,8 @@ let g:racer_experimental_completer = 1
 
 " LaTeX {{{
 let g:tex_flavor='latex'
+let g:surround_{char2nr('c')} = "\\\1command\1{\r}"
+au FileType tex nnoremap <leader>m :Make!<cr>
 " }}}
 
 " Snippets {{{
