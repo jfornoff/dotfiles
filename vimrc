@@ -221,6 +221,7 @@ au FileType tex nnoremap <leader>m :Make!<cr>
 " Snippets {{{
 let g:UltiSnipsSnippetsDir="~/.vim/snippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsUsePythonVersion = 3
 " }}}
 "
 
