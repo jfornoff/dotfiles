@@ -226,7 +226,6 @@ let g:UltiSnipsUsePythonVersion = 3
 "
 
 let g:neoformat_elixir_elixirfmt = {
-  \ 'env': ['ASDF_ELIXIR_VERSION=1.6.0'],
   \ 'exe': 'mix',
   \ 'args': ['format', '-'],
   \ 'stdin': 1

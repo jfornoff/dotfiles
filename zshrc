@@ -106,6 +106,12 @@ alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
 
-alias gcof='git branch | fzf | xargs -n1 git checkout'
+alias gcof='git branch -a | fzf | xargs -n1 git checkout'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jfornoff/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc'; fi
