@@ -65,6 +65,13 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 " }}}
 
+" Bug workarounds {{{
+" https://github.com/vim/vim/issues/3117
+if has('python3')
+    silent! python3 1
+endif
+"}}}
+
 " Fold settings {{{
 set foldenable                    " enable folds
 set foldmethod=indent
