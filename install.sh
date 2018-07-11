@@ -5,4 +5,4 @@ if ! [ -x "$(command -v rcup)" ]; then
   exit 1
 fi
 
-SYMLINK_DIRS="config conf.rc spacemacs.d secrets vim z" rcup
+SYMLINK_DIRS="config conf.rc spacemacs.d secrets vim" rcup

@@ -81,7 +81,7 @@ export EDITOR='vim'
 # Example aliases
 
 # Enable Z
-. ~/dotfiles/z/z.sh
+. ~/.dotfiles/z/z.sh
 
 function dockercleanimages {
   docker rmi -f $(docker images -q -f dangling=true)
