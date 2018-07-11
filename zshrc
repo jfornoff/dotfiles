@@ -62,7 +62,7 @@ bindkey '^r' history-incremental-search-backward
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -107,6 +107,7 @@ alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/ser
 alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
 
 alias gcof='git branch -a | fzf | xargs -n1 git checkout'
+alias vim='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
