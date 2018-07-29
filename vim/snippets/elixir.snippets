@@ -43,3 +43,7 @@ snippet tc "TC"
 		${1}
 	end)
 	Logger.warn("Time taken for ${0}: #{time / 1000}")
+
+snippet fprof "fprof"
+	Mix.Tasks.Profile.Fprof.profile(fn ->
+	end, details: true, callers: true)
