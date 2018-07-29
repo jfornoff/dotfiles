@@ -28,7 +28,7 @@ DISABLE_AUTO_TITLE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(asdf dotenv git vi-mode ubuntu zsh-autosuggestions kubectl)
+plugins=(asdf dotenv git vi-mode ubuntu zsh-autosuggestions kubectl z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,9 +43,6 @@ bindkey '^r' history-incremental-search-backward
 # export LANG=en_US.UTF-8
 
 export EDITOR='nvim'
-
-# Enable Z
-. ~/.dotfiles/z/z.sh
 
 function dockercleanimages {
   docker rmi -f $(docker images -q -f dangling=true)
