@@ -167,6 +167,21 @@ vnoremap . :norm.<cr>
 " }}}
 
 " Vim-Test {{{
+function! UmbrellaElixirTestTransform(cmd) abort
+  if a:cmd !~ 'apps/'
+    return a:cmd
+  endif
+
+  let testCommand = join(split(a:cmd)[0:-2])
+  let umbrellaTestFilePath = split(a:cmd)[-1]
+  let pathFragments = split(umbrellaTestFilePath, "/")
+  let appName = pathFragments[1]
+  let localTestPath = join(pathFragments[2:], "/")
+  return join(["mix cmd --app ", appName, testCommand, localTestPath])
+endfunction
+
+let g:test#custom_transformations = {'elixir': function('UmbrellaElixirTestTransform')}
+let g:test#transformation = 'elixir'
 let test#strategy = "dispatch"
 nmap <silent> <leader>T :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
