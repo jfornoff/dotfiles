@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'ElmCast/elm-vim'
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'mattn/emmet-vim'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
@@ -26,13 +26,17 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
-Plug 'slashmili/alchemist.vim'
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-projectionist'
 Plug 'raimondi/delimitmate'
 Plug 'parkr/vim-jekyll'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 call plug#end()
 
@@ -147,7 +151,7 @@ nnoremap \ :Ag<SPACE>
 
 " FZF
 let g:fzf_tags_command = 'ctags -R'
-map <leader>l :Lines<cr>
+map <leader>l :call LanguageClient_contextMenu()<cr>
 nmap <leader>f :GitFiles<cr>
 nnoremap <leader>h :Buffers<cr>
 nnoremap <leader>g :Tags<cr>
@@ -215,7 +219,8 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 " Elixir {{{
 let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
-au FileType elixir nnoremap gf :call ExGoToDef()<cr>
+
+au FileType elixir nnoremap gf :call LanguageClient#textDocument_definition()<cr>
 
 function! ExGoToDef()
   execute 'ExDef' expand('<cWORD>')
@@ -246,6 +251,10 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsUsePythonVersion = 3
 " }}}
 "
+
+let g:LanguageClient_serverCommands = {
+      \ 'elixir': ['~/bin/elixirls']
+      \}
 
 let g:neoformat_elixir_elixirfmt = {
   \ 'exe': 'mix',

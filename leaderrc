@@ -1,0 +1,22 @@
+{
+  "keys": {
+    "h": {
+      "name": "help",
+      "keys": {
+        "l": "leader help"
+      }
+    },
+    "g": {
+      "name": "git",
+      "loopingKeys": [
+        "s"
+      ],
+      "keys": {
+        "p": "git push",
+        "P": "git pull",
+        "s": "git status"
+      }
+    }
+  }
+}
+

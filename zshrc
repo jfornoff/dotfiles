@@ -1,3 +1,4 @@
+setopt +o nomatch
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="avit"
@@ -55,10 +56,16 @@ function dockercleancontainers {
 export PATH="$PATH:$HOME/bin"
 
 # Source secrets files
-for f in ~/.secrets/*; do source $f; done
+for f in ~/.secrets/*; do
+  test -f "$f" || continue
+  source $f
+done
 
 # Source additional shell configs
-for f in ~/.conf.rc/*; do source $f; done
+for f in ~/.conf.rc/*; do
+  test -f "$f" || continue
+  source $f
+done
 
 alias pairsession-open='tmux -2 -S /tmp/pair new-session -t pair -s pair -d && chown $(whoami):pair /tmp/pair && pairsession-attach'
 alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
@@ -72,6 +79,26 @@ alias vim='nvim'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jfornoff/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/path.zsh.inc'; fi
+
+if command -v leader &> /dev/null; then
+  () {
+    leader_widget() {
+      local leader_exit leader_next
+      leader_next=$(SHELL=/bin/zsh BUFFER=$BUFFER CURSOR=$CURSOR leader print)
+      leader_exit=$?
+      if [ $leader_exit -eq 3 ]; then
+          BUFFER="${BUFFER}${KEYS}"
+          CURSOR=$((CURSOR + $#KEYS))
+          return "$leader_exit"
+      fi
+      eval "$leader_next"
+      stty sane
+    }
+
+    zle -N leader_widget
+    bindkey ',' leader_widget
+  }
+fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc'; fi
