@@ -79,6 +79,9 @@ if command -v bat &> /dev/null; then
   alias cat='bat'
 fi
 
+# https://remysharp.com/2018/08/23/cli-improved
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
