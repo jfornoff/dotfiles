@@ -75,6 +75,10 @@ alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 alias gcof='git branch -a | fzf | xargs -n1 git checkout'
 alias vim='nvim'
 
+if command -v bat &> /dev/null; then
+  alias cat='bat'
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
