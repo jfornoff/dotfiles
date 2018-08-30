@@ -29,7 +29,7 @@ DISABLE_AUTO_TITLE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(asdf dotenv git vi-mode ubuntu zsh-autosuggestions kubectl z)
+plugins=(asdf docker-compose dotenv git vi-mode ubuntu zsh-autosuggestions kubectl z)
 
 source $ZSH/oh-my-zsh.sh
 
