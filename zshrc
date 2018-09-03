@@ -87,25 +87,5 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jfornoff/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/path.zsh.inc'; fi
 
-if command -v leader &> /dev/null; then
-  () {
-    leader_widget() {
-      local leader_exit leader_next
-      leader_next=$(SHELL=/bin/zsh BUFFER=$BUFFER CURSOR=$CURSOR leader print)
-      leader_exit=$?
-      if [ $leader_exit -eq 3 ]; then
-          BUFFER="${BUFFER}${KEYS}"
-          CURSOR=$((CURSOR + $#KEYS))
-          return "$leader_exit"
-      fi
-      eval "$leader_next"
-      stty sane
-    }
-
-    zle -N leader_widget
-    bindkey ',' leader_widget
-  }
-fi
-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jfornoff/google-cloud-sdk/completion.zsh.inc'; fi
