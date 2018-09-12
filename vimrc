@@ -105,6 +105,7 @@ autocmd BufWinLeave * call clearmatches()
 
 " Airline
 let g:airline_theme='simple'
+let g:airline#extensions#ale#enabled=1
 " }}}
 
 " Leader commands {{{
