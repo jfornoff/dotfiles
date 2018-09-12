@@ -255,6 +255,7 @@ let g:UltiSnipsUsePythonVersion = 3
 let g:LanguageClient_serverCommands = {
       \ 'elixir': ['~/bin/elixirls']
       \}
+let g:LanguageClient_diagnosticsList = "Location"
 
 let g:neoformat_elixir_elixirfmt = {
   \ 'exe': 'mix',
