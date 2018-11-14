@@ -11,7 +11,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'mattn/emmet-vim'
-Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -245,8 +245,24 @@ au FileType tex nnoremap <leader>m :Make!<cr>
 let g:UltiSnipsSnippetsDir="~/.vim/snippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger = "<s-tab>"
 " }}}
-"
+
+" Completion {{{
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('async_timeout', 10)
+
+" Tab complete
+function! DoTab()
+  if pumvisible()
+    return "\<C-n>"
+  endif
+
+  return "\<TAB>"
+endfunction
+
+inoremap <expr> <TAB> DoTab()
+" }}}
 
 let g:LanguageClient_serverCommands = {
       \ 'elixir': ['~/bin/elixirls']
@@ -273,4 +289,5 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
+
 " vim:foldmethod=marker:foldlevel=0
