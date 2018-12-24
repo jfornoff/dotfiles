@@ -33,6 +33,7 @@ Plug 'raimondi/delimitmate'
 Plug 'parkr/vim-jekyll'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
