@@ -38,6 +38,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform'}
+Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform'}
 
 call plug#end()
 
@@ -242,6 +244,12 @@ let g:surround_{char2nr('c')} = "\\\1command\1{\r}"
 au FileType tex nnoremap <leader>m :Make!<cr>
 " }}}
 
+" Terraform {{{
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
+let g:terraform_registry_module_completion = 1
+" }}}
+
 " Snippets {{{
 let g:UltiSnipsSnippetsDir="~/.vim/snippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
@@ -250,8 +258,11 @@ let g:UltiSnipsExpandTrigger = "<s-tab>"
 " }}}
 
 " Completion {{{
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('async_timeout', 10)
+call deoplete#initialize()
 
 " Tab complete
 function! DoTab()
