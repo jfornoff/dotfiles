@@ -73,13 +73,6 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 " }}}
 
-" Bug workarounds {{{
-" https://github.com/vim/vim/issues/3117
-if has('python3')
-    silent! python3 1
-endif
-"}}}
-
 " Fold settings {{{
 set foldenable                    " enable folds
 set foldmethod=indent
@@ -277,11 +270,14 @@ endfunction
 inoremap <expr> <TAB> DoTab()
 " }}}
 
+" Language Server {{{
 let g:LanguageClient_serverCommands = {
       \ 'elixir': ['~/bin/elixirls']
       \}
 let g:LanguageClient_diagnosticsList = "Location"
+"}}}
 
+" Code Formatters {{{
 let g:neoformat_elixir_elixirfmt = {
   \ 'exe': 'mix',
   \ 'args': ['format', '-'],
@@ -302,5 +298,6 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
+"}}}
 
 " vim:foldmethod=marker:foldlevel=0
