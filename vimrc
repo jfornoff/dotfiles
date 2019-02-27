@@ -44,13 +44,13 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
-syntax on                         " show syntax highlighting
+syntax on
 filetype plugin indent on
-set autoindent                    " set auto indent
+set autoindent
 set fileformat=unix
 set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
-set number                        " Line numbers!
+set number
 set expandtab                     " use spaces, not tab characters
 set showmatch                     " show bracket matches
 set ignorecase                    " ignore case in search
@@ -74,7 +74,7 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 " }}}
 
 " Fold settings {{{
-set foldenable                    " enable folds
+set foldenable
 set foldmethod=indent
 set foldlevelstart=1
 " }}}
@@ -146,8 +146,8 @@ nnoremap \ :Ag<SPACE>
 let g:fzf_tags_command = 'ctags -R'
 map <leader>l :call LanguageClient_contextMenu()<cr>
 nmap <leader>f :GitFiles<cr>
+nmap <leader>F :Files<cr>
 nnoremap <leader>h :Buffers<cr>
-nnoremap <leader>g :Tags<cr>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
@@ -191,8 +191,8 @@ let test#ruby#rspec#options = '--format progress'
 map <leader>ct :Dispatch! ctags
 " }}}
 
-" Quick Server {{{
-map <leader>sv :Dispatch python -m SimpleHTTPServer 8000
+" Quick Server on port 8000 {{{
+map <leader>sv :Dispatch python -m http.server
 "}}}
 
 " Elm {{{
@@ -214,10 +214,6 @@ let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
 
 au FileType elixir nnoremap gf :call LanguageClient#textDocument_definition()<cr>
-
-function! ExGoToDef()
-  execute 'ExDef' expand('<cWORD>')
-endfunction
 
 function! OpenCallersInQuickfix(query)
   pyfile ~/.vim/custom_functions/mix-xref-callers.py
@@ -278,14 +274,6 @@ let g:LanguageClient_diagnosticsList = "Location"
 "}}}
 
 " Code Formatters {{{
-let g:neoformat_elixir_elixirfmt = {
-  \ 'exe': 'mix',
-  \ 'args': ['format', '-'],
-  \ 'stdin': 1
-  \ }
-
-let g:neoformat_enabled_elixir = ['elixirfmt']
-
 let g:neoformat_markdown_remark = {
   \ 'exe': 'remark',
   \ 'args': ['--no-color', '--silent', '--use', 'remark-frontmatter'],
