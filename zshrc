@@ -53,7 +53,7 @@ function dockercleancontainers {
   docker rm $(docker ps -a -q)
 }
 
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/go/bin"
 
 # Source secrets files
 for f in ~/.secrets/*; do
