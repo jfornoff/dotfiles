@@ -40,7 +40,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform'}
 Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform'}
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
