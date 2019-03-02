@@ -26,7 +26,6 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
-Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-projectionist'
 Plug 'raimondi/delimitmate'
 Plug 'parkr/vim-jekyll'
@@ -212,7 +211,9 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
 
-au FileType elixir nnoremap gf :call LanguageClient#textDocument_definition()<cr>
+nnoremap gf :call LanguageClient#textDocument_definition()<cr>
+nnoremap <leader>r :call LanguageClient#textDocument_references()<cr>
+nnoremap <leader>rn :call LanguageClient#textDocument_rename()<cr>
 
 function! OpenCallersInQuickfix(query)
   pyfile ~/.vim/custom_functions/mix-xref-callers.py
@@ -267,24 +268,39 @@ inoremap <expr> <TAB> DoTab()
 
 " Language Server {{{
 let g:LanguageClient_serverCommands = {
-      \ 'elixir': ['~/bin/elixirls']
+      \ 'elixir': ['~/bin/elixirls'],
+      \ 'go': ['bingo'],
       \}
+
+let g:LanguageClient_rootMarkers = {
+        \ 'go': ['.git', 'go.mod'],
+        \ }
+
 let g:LanguageClient_diagnosticsList = "Location"
+
+nnoremap gf :call LanguageClient#textDocument_definition()<cr>
+nnoremap <leader>r :call LanguageClient#textDocument_references()<cr>
+nnoremap <leader>rn :call LanguageClient#textDocument_rename()<cr>
 "}}}
 
-" Code Formatters {{{
-let g:neoformat_markdown_remark = {
-  \ 'exe': 'remark',
-  \ 'args': ['--no-color', '--silent', '--use', 'remark-frontmatter'],
-  \ 'stdin': 1
-  \ }
+" ALE {{{
+let g:ale_elixir_elixir_ls_release = '~/bin/elixirls'
+let g:ale_fix_on_save = 1
 
-let g:neoformat_enabled_markdown = []
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'elixir': ['mix_format'],
+\   'elm': ['elm-format'],
+\   'go': ['gofmt', 'goimports'],
+\   'hcl': ['terraform'],
+\   'json': ['jq'],
+\   'python': ['black'],
+\   'ruby': ['rufo', 'standardrb'],
+\   'rust': ['rustfmt'],
+\   'scala': ['scalafmt'],
+\   'sh': ['shfmt'],
+\   'terraform': ['terraform'],
+\}
 "}}}
 
 " vim:foldmethod=marker:foldlevel=0
