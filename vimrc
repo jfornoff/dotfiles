@@ -270,6 +270,7 @@ inoremap <expr> <TAB> DoTab()
 let g:LanguageClient_serverCommands = {
       \ 'elixir': ['~/bin/elixirls'],
       \ 'go': ['bingo'],
+      \ 'python': ['pyls'],
       \}
 
 let g:LanguageClient_rootMarkers = {
