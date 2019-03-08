@@ -1,3 +1,4 @@
 # These things are GLOBALLY gitignored.
 *.swp
 .env
+.elixir_ls/
