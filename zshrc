@@ -4,7 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="avit"
 DISABLE_AUTO_TITLE="true"
 
-plugins=(asdf docker-compose dotenv gitfast vi-mode ubuntu zsh-autosuggestions kubectl z)
+plugins=(asdf docker-compose dotenv git gitfast vi-mode ubuntu zsh-autosuggestions kubectl z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -13,7 +13,7 @@ export KEYTIMEOUT=1
 bindkey '^r' history-incremental-search-backward
 
 export EDITOR='nvim'
-export PATH="$PATH:$HOME/bin:$HOME/go/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
 
 # Source secrets files
 for f in ~/.secrets/*; do

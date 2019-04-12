@@ -177,7 +177,13 @@ endfunction
 
 let g:test#custom_transformations = {'elixir': function('UmbrellaElixirTestTransform')}
 let g:test#transformation = 'elixir'
-let test#strategy = "dispatch"
+let test#strategy = "neovim"
+
+" Exit terminal insert mode
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+
 nmap <silent> <leader>T :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
