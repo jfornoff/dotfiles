@@ -138,7 +138,7 @@ elseif executable('ag')
 endif
 
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
+nnoremap \ :Rg<SPACE>
 
 " FZF
 let g:fzf_tags_command = 'ctags -R'
