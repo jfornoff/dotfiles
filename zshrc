@@ -33,7 +33,7 @@ alias pairsession-attach='tmux -2 -S /tmp/pair attach -t pair'
 alias pg-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias pg-stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
 
-alias gcof='git branch -a | fzf | xargs -n1 git checkout'
+alias gcof='git branch | fzf | xargs -n1 git checkout'
 alias vim='nvim'
 
 if command -v bat &> /dev/null; then
