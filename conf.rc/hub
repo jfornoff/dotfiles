@@ -4,3 +4,4 @@ alias gh-browse='hub browse'
 alias gh-listpr='hub browse -- pulls'
 alias gh-openpr='hub pull-request'
 alias gh-checkpr="hub pr list | fzf | awk '{print \$1}' | tr -d '#' | xargs hub pr checkout"
+alias pr='gpsup && gh-openpr'
