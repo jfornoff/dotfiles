@@ -307,6 +307,7 @@ let g:ale_fixers = {
 \   'scala': ['scalafmt'],
 \   'sh': ['shfmt'],
 \   'terraform': ['terraform'],
+\   'javascript': ['prettier'],
 \}
 "}}}
 
