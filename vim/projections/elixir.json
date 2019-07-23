@@ -1,12 +1,12 @@
 {
-  "apps/*_spec.exs" : {
+  "apps/*_spec.exs": {
     "command": "uspec",
-    "type" : "test",
+    "type": "test",
     "alternate": "apps/{umbrellaToLib}.ex"
   },
-  "apps/*.ex" : {
+  "apps/*.ex": {
     "command": "ulib",
-    "type" : "source",
+    "type": "source",
     "alternate": "apps/{umbrellaToSpec}_spec.exs"
   },
   "lib/*.ex": {
