@@ -4,13 +4,12 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="avit"
 DISABLE_AUTO_TITLE="true"
 
-plugins=(asdf docker-compose dotenv git gitfast vi-mode ubuntu zsh-autosuggestions kubectl z)
+plugins=(asdf docker-compose dotenv fasd git gitfast vi-mode zsh-autosuggestions kubectl fzf)
 
 source $ZSH/oh-my-zsh.sh
 
 # VI Mode
 export KEYTIMEOUT=1
-bindkey '^r' history-incremental-search-backward
 
 export EDITOR='nvim'
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
@@ -44,11 +43,7 @@ fi
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+eval "$(rbenv init -)"

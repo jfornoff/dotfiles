@@ -6,5 +6,3 @@
 
 [core]
 	excludesfile = ~/.gitignore
-[hub]
-	host = github.gcxi.de

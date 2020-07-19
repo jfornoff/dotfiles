@@ -25,17 +25,14 @@ Plug 'ecomba/vim-ruby-refactoring'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-projectionist'
 Plug 'raimondi/delimitmate'
 Plug 'parkr/vim-jekyll'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 Plug 'hashivim/vim-terraform', { 'for': 'terraform'}
 Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform'}
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -189,6 +186,7 @@ nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 
 let test#ruby#rspec#options = '--format progress'
+let test#elixir#exunit#executable = 'mix test.unit'
 " }}}
 
 " CTags {{{
@@ -217,6 +215,7 @@ au FileType elm nnoremap <leader>e :ElmErrorDetail<cr>
 let g:alchemist#extended_autocomplete = 1
 let g:alchemist_tag_map = '<C-d>'
 
+nnoremap <silent> K :ALEHover<cr>
 nnoremap gf :call LanguageClient#textDocument_definition()<cr>
 nnoremap <leader>r :call LanguageClient#textDocument_references()<cr>
 nnoremap <leader>rn :call LanguageClient#textDocument_rename()<cr>
@@ -227,11 +226,6 @@ endfunction
 
 command! -nargs=1 -complete=customlist,elixircomplete#ex_doc_complete Callers
       \ :call OpenCallersInQuickfix(<f-args>)
-" }}}
-
-" Rust {{{
-let g:racer_cmd = "/Users/jfornoff/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
 " }}}
 
 " LaTeX {{{
@@ -273,25 +267,31 @@ inoremap <expr> <TAB> DoTab()
 " }}}
 
 " Language Server {{{
-let g:LanguageClient_serverCommands = {
-      \ 'elixir': ['~/bin/elixirls'],
-      \ 'go': ['bingo'],
-      \ 'python': ['pyls'],
-      \}
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
 
-let g:LanguageClient_rootMarkers = {
-        \ 'go': ['.git', 'go.mod'],
-        \ }
+    " refer to doc to add more commands
+  endfunction
 
-let g:LanguageClient_diagnosticsList = "Location"
 
-nnoremap gf :call LanguageClient#textDocument_definition()<cr>
-nnoremap <leader>r :call LanguageClient#textDocument_references()<cr>
-nnoremap <leader>rn :call LanguageClient#textDocument_rename()<cr>
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
 "}}}
 
 " ALE {{{
-let g:ale_elixir_elixir_ls_release = '~/bin/elixirls'
 let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {

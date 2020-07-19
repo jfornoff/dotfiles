@@ -8,7 +8,7 @@ echo "-- Setting up brew taps.."
 brew tap thoughtbot/formulae
 brew tap homebrew/cask-fonts
 echo "-- Installing essential utilities.."
-ESSENTIAL_UTILS="rcm fzf neovim tmux zsh ripgrep tree"
+ESSENTIAL_UTILS="rcm fzf neovim tmux zsh ripgrep tree reattach-to-user-namespace fasd"
 echo "$ESSENTIAL_UTILS" | xargs brew install
 
 echo "-- Installing essential applications.."
