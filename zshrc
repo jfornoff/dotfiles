@@ -46,4 +46,3 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-eval "$(rbenv init -)"
