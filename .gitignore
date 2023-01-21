@@ -2,3 +2,6 @@ vim/view
 vim/.netrwhist
 vim/custom_snippets/work.snippets
 vim/plugged
+vim/autoload/plug.vim.old
+config/iterm2
+config/raycast
