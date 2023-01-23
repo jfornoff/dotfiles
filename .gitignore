@@ -5,3 +5,4 @@ vim/plugged
 vim/autoload/plug.vim.old
 config/iterm2
 config/raycast
+config/nvim/plugin/packer_compiled.lua
