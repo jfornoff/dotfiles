@@ -1,55 +1,61 @@
--- Install packer if necessary.
-require('packer_bootstrap')
+-- Bootstrap lazy.nvim package manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
 
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({
   -- Syntax highlighting.
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
   -- Fuzzy search for ~everything.
-  use 'junegunn/fzf'
-  use 'junegunn/fzf.vim'
+  'junegunn/fzf',
+  'junegunn/fzf.vim',
   -- Snippets
-  use 'SirVer/ultisnips'
-  use 'honza/vim-snippets'
+  'SirVer/ultisnips',
+  'honza/vim-snippets',
   -- Language Server
-  use 'neovim/nvim-lspconfig'
+  'neovim/nvim-lspconfig',
   -- Code completion
   ---- via LSP
-  use 'hrsh7th/cmp-nvim-lsp'
+  'hrsh7th/cmp-nvim-lsp',
   ---- from local buffer words
-  use 'hrsh7th/cmp-buffer'
+  'hrsh7th/cmp-buffer',
   ---- for file paths
-  use 'hrsh7th/cmp-path'
+  'hrsh7th/cmp-path',
   ---- for command line
-  use 'hrsh7th/cmp-cmdline'
+  'hrsh7th/cmp-cmdline',
   ---- for available snippets
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
-  use 'hrsh7th/nvim-cmp'
+  'quangnguyen30192/cmp-nvim-ultisnips',
+  'hrsh7th/nvim-cmp',
   -- Color scheme
-  use 'altercation/vim-colors-solarized'
+  'altercation/vim-colors-solarized',
   -- Running tests async with hotkeys.
-  use 'vim-test/vim-test'
+  'vim-test/vim-test',
   -- Jumping between related files.
-  use 'tpope/vim-projectionist'
+  'tpope/vim-projectionist',
   -- Surrounding text objects with (usually, but not just) parentheses.
-  use({
+  {
     "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
     config = function()
         require("nvim-surround").setup({
             -- Configuration here, or leave empty to use defaults
         })
     end
-  })
+  },
   -- Auto-close parentheses.
-  use 'jiangmiao/auto-pairs'
+  'jiangmiao/auto-pairs',
   -- Language support
-  use {'rust-lang/rust.vim', ft = 'rust'}
-  use {'hashivim/vim-terraform', ft = 'terraform'}
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  {'rust-lang/rust.vim', ft = 'rust'},
+  {'hashivim/vim-terraform', ft = 'terraform'}
+})
