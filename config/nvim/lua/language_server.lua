@@ -1,7 +1,5 @@
 vim.opt.completeopt='menu,menuone,noselect'
 
-require'lspconfig'.rust_analyzer.setup{}
-
 -- Set up nvim-cmp.
 local cmp = require('cmp')
 
@@ -63,9 +61,23 @@ cmp.setup.cmdline(':', {
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['rust_analyzer'].setup {
-  capabilities = capabilities
+require('lspconfig').rust_analyzer.setup {
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+        cargo = {
+            buildScripts = {
+                enable = true,
+            },
+        },
+    }
+  }
 }
 
 -- Autoformat on save
-vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.format()')
+vim.api.nvim_create_autocmd("BufWritePre", {
+  buffer = buffer,
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end
+})
