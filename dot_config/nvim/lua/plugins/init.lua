@@ -40,7 +40,4 @@ return {
   },
   -- Auto-close parentheses.
   'jiangmiao/auto-pairs',
-  -- Language support
-  {'rust-lang/rust.vim', ft = 'rust'},
-  {'hashivim/vim-terraform', ft = 'terraform'}
 }
