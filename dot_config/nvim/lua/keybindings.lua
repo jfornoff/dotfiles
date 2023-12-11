@@ -18,10 +18,9 @@ vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
-    vim.keymap.set('n', '<leader>yg', vim.lsp.buf.definition)
+    vim.keymap.set('n', '<leader>yd', vim.lsp.buf.definition)
     vim.keymap.set('n', '<leader>yf', vim.lsp.buf.references)
     vim.keymap.set('n', '<leader>yr', vim.lsp.buf.rename)
-    vim.keymap.set('n', '<leader>yc', vim.lsp.buf.code_action)
-    vim.keymap.set('n', '<leader>yd', vim.diagnostic.setqflist)
+    vim.keymap.set('n', '<leader>ya', vim.lsp.buf.code_action)
   end,
 })

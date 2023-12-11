@@ -1,4 +1,6 @@
 return {
+  -- Tool dependency management
+  'williamboman/mason.nvim',
   -- Syntax highlighting.
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
   -- Fuzzy search for ~everything.
