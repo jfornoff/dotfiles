@@ -30,6 +30,12 @@ for f in ~/.conf.rc/*; do
   source $f
 done
 
+## Source additional ZSH configs
+for f in ~/.config/zsh/config.d/*.zsh; do
+  test -f "$f" || continue
+  source $f
+done
+
 ## Library-specific configs
 #### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
