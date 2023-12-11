@@ -1,5 +1,5 @@
 function! s:loadElixirProjections()
-  let l:json = readfile(expand("~/.vim/projections/elixir.json"))
+  let l:json = readfile(expand("~/.config/nvim/projections/elixir.json"))
   call projectionist#append(getcwd(), projectionist#json_parse(l:json))
 endfunction
 
