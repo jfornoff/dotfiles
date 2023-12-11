@@ -1,0 +1,3 @@
+# Files that won't be linked to the target state by Chezmoi.
+README.md
+manage.sh
