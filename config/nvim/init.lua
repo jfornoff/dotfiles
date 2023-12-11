@@ -1,3 +1,25 @@
+-- Bootstrap lazy.nvim package manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+-- Need to specify mapleader before importing plugins, otherwise the
+-- keybindings will be off.
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+-- Install all plugins based on files in config/nvim/plugins/*.lua
+require('lazy').setup('plugins')
+
 -- General settings {{{
 vim.opt.encoding = 'utf-8'
 vim.opt.compatible = false
@@ -28,7 +50,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- }}}
 
-require('plugins')
 require('language_server')
 require('appearance')
 require('keybindings')

@@ -1,19 +1,4 @@
--- Bootstrap lazy.nvim package manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-
-vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup({
+return {
   -- Syntax highlighting.
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
   -- Fuzzy search for ~everything.
@@ -58,4 +43,4 @@ require('lazy').setup({
   -- Language support
   {'rust-lang/rust.vim', ft = 'rust'},
   {'hashivim/vim-terraform', ft = 'terraform'}
-})
+}

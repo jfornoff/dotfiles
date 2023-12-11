@@ -5,4 +5,5 @@ if ! [ -x "$(command -v rcup)" ]; then
   exit 1
 fi
 
-SYMLINK_DIRS="config conf.rc spacemacs.d secrets vim" rcup -f -vv
+# Not super neat, you need to be in the directory and run ./install.sh
+SYMLINK_DIRS="config conf.rc spacemacs.d secrets vim" rcup -f -vv -d $(pwd)
