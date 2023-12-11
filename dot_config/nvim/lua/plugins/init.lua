@@ -11,6 +11,8 @@ return {
   'honza/vim-snippets',
   -- Language Server
   'neovim/nvim-lspconfig',
+  ---- Pictograms for the type of completions
+  'onsails/lspkind.nvim',
   -- Code completion
   ---- via LSP
   'hrsh7th/cmp-nvim-lsp',
