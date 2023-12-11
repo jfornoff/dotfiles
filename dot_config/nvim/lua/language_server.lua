@@ -1,5 +1,9 @@
 vim.opt.completeopt='menu,menuone,noselect'
 
+-- Initialize
+local lspkind = require("lspkind")
+lspkind.init()
+
 -- Set up nvim-cmp.
 local cmp = require('cmp')
 
@@ -38,7 +42,27 @@ cmp.setup({
     { name = 'ultisnips' },
   }, {
     { name = 'buffer' },
-  })
+  }),
+  sorting = {
+    comparators = {}, -- We stop all sorting to let the lsp do the sorting
+  },
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = true,
+      maxwidth = 40, -- half max width
+      menu = {
+        buffer = "[buffer]",
+        nvim_lsp = "[CiderLSP]",
+        nvim_lua = "[API]",
+        path = "[path]",
+        ultisnips = "[snip]",
+      },
+    }),
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
