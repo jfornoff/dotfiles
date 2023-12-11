@@ -5,5 +5,4 @@
   email = janfornoff@gmail.com
 
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = true
+  excludesfile = ~/.gitignore
