@@ -1,5 +1,3 @@
-vim.g.mapleader = ","
-
 -- FZF navigation
 vim.keymap.set('n', '<leader>f', ':GitFiles<CR>')
 vim.keymap.set('n', '<leader>F', ':Files<CR>')
