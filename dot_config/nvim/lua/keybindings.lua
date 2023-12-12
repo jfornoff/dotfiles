@@ -1,7 +1,11 @@
 -- FZF navigation
-vim.keymap.set('n', '<leader>f', ':GitFiles<CR>')
-vim.keymap.set('n', '<leader>F', ':Files<CR>')
+vim.keymap.set('n', '<leader>f', ':Files<CR>')
+vim.keymap.set('n', '<leader>g', ':GitFiles<CR>')
 vim.keymap.set('n', '<leader>h', ':Buffers<CR>')
+vim.keymap.set('n', '<leader>j', ':Jumps<CR>')
+
+-- Snippet quickselection, provided by fzf.vim
+vim.keymap.set('n', '<leader>s', ':Snippets<CR>')
 
 -- Closing windows quickly
 vim.keymap.set('n', '<leader>c', ':ccl<CR>')
@@ -13,6 +17,9 @@ vim.keymap.set('n', '<C-l>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<leader>T', ':TestNearest<CR>')
 vim.keymap.set('n', '<leader>t', ':TestFile<CR>')
 vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
+
+-- Global search, provided by fzf.vim
+vim.keymap.set('n', '\\', ':Rg<SPACE>')
 
 -- LSP keybindings, if LSP is active.
 vim.api.nvim_create_autocmd('LspAttach', {

@@ -1,4 +1,4 @@
-vim.opt.completeopt='menu,menuone,noselect'
+vim.opt.completeopt = 'menu,menuone,noselect'
 
 -- Initialize
 local lspkind = require("lspkind")
@@ -27,15 +27,15 @@ cmp.setup({
       else
         cmp.complete()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
     ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item(select_opts)
       else
         fallback()
       end
-    end, {'i', 's'}),
-    ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    end, { 'i', 's' }),
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -93,11 +93,11 @@ lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
-        cargo = {
-            buildScripts = {
-                enable = true,
-            },
+      cargo = {
+        buildScripts = {
+          enable = true,
         },
+      },
     }
   }
 }
