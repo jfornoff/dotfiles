@@ -11,6 +11,8 @@ return {
   'honza/vim-snippets',
   -- Language Server
   'neovim/nvim-lspconfig',
+  ----- For Lua
+  { "folke/neodev.nvim", opts = {} },
   ---- Pictograms for the type of completions
   'onsails/lspkind.nvim',
   -- Code completion

@@ -83,9 +83,13 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- First part of setup on LSP for Lua (https://github.com/folke/neodev.nvim)
+require("neodev").setup({})
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig').rust_analyzer.setup {
+local lspconfig = require('lspconfig')
+lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
@@ -97,6 +101,9 @@ require('lspconfig').rust_analyzer.setup {
     }
   }
 }
+
+-- Second part of setup on LSP for Lua.
+lspconfig.lua_ls.setup({})
 
 -- Autoformat on save
 vim.api.nvim_create_autocmd("BufWritePre", {
