@@ -1,11 +1,27 @@
--- FZF navigation
-vim.keymap.set('n', '<leader>f', ':Files<CR>')
-vim.keymap.set('n', '<leader>g', ':GitFiles<CR>')
-vim.keymap.set('n', '<leader>h', ':Buffers<CR>')
-vim.keymap.set('n', '<leader>j', ':Jumps<CR>')
+-- Fuzzy navigation
+local telescope = require("telescope")
+local telescope_builtin = require('telescope.builtin')
+local telescope_actions = require("telescope.actions")
 
--- Snippet quickselection, provided by fzf.vim
-vim.keymap.set('n', '<leader>s', ':Snippets<CR>')
+telescope.setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = telescope_actions.close,
+        ["<C-k>"] = telescope_actions.move_selection_previous,
+        ["<C-j>"] = telescope_actions.move_selection_next,
+      }
+    }
+  }
+})
+telescope.load_extension('ultisnips')
+
+vim.keymap.set('n', '<leader>f', telescope_builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', telescope_builtin.git_files, {})
+vim.keymap.set('n', '<leader>h', telescope_builtin.buffers, {})
+vim.keymap.set('n', '<leader>j', telescope_builtin.jumplist, {})
+vim.keymap.set('n', '<leader>k', telescope_builtin.keymaps, {})
+vim.keymap.set('n', '<leader>s', telescope.extensions.ultisnips.ultisnips, {})
 
 -- Closing windows quickly
 vim.keymap.set('n', '<leader>c', ':ccl<CR>')
