@@ -3,13 +3,6 @@ return {
   'williamboman/mason.nvim',
   -- Syntax highlighting.
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  -- Fuzzy search for ~everything.
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  'fhill2/telescope-ultisnips.nvim',
   -- Snippets
   'SirVer/ultisnips',
   'honza/vim-snippets',
