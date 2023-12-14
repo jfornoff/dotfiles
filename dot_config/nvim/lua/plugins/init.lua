@@ -31,8 +31,6 @@ return {
   ---- for available snippets
   'quangnguyen30192/cmp-nvim-ultisnips',
   'hrsh7th/nvim-cmp',
-  -- Color scheme
-  'altercation/vim-colors-solarized',
   -- Running tests async with hotkeys.
   'vim-test/vim-test',
   -- Jumping between related files.
