@@ -24,8 +24,6 @@ return {
   ---- for available snippets
   'quangnguyen30192/cmp-nvim-ultisnips',
   'hrsh7th/nvim-cmp',
-  -- Running tests async with hotkeys.
-  'vim-test/vim-test',
   -- Jumping between related files.
   'tpope/vim-projectionist',
   -- Surrounding text objects with (usually, but not just) parentheses.

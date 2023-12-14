@@ -4,11 +4,6 @@ vim.keymap.set('n', '<leader>c', ':ccl<CR>')
 -- Remove search highlighting
 vim.keymap.set('n', '<C-l>', ':nohlsearch<CR>')
 
--- Running tests via vim-test
-vim.keymap.set('n', '<leader>T', ':TestNearest<CR>')
-vim.keymap.set('n', '<leader>t', ':TestFile<CR>')
-vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
-
 -- LSP keybindings, if LSP is active.
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
