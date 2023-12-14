@@ -3,27 +3,6 @@ return {
   'williamboman/mason.nvim',
   -- Syntax highlighting.
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  -- Snippets
-  'SirVer/ultisnips',
-  'honza/vim-snippets',
-  -- Language Server
-  'neovim/nvim-lspconfig',
-  ----- For Lua
-  { "folke/neodev.nvim",               opts = {} },
-  ---- Pictograms for the type of completions
-  'onsails/lspkind.nvim',
-  -- Code completion
-  ---- via LSP
-  'hrsh7th/cmp-nvim-lsp',
-  ---- from local buffer words
-  'hrsh7th/cmp-buffer',
-  ---- for file paths
-  'hrsh7th/cmp-path',
-  ---- for command line
-  'hrsh7th/cmp-cmdline',
-  ---- for available snippets
-  'quangnguyen30192/cmp-nvim-ultisnips',
-  'hrsh7th/nvim-cmp',
   -- Jumping between related files.
   'tpope/vim-projectionist',
   -- Surrounding text objects with (usually, but not just) parentheses.

@@ -51,5 +51,4 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- }}}
 
 require('mason').setup()
-require('language_server')
 require('keybindings')
