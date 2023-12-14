@@ -24,7 +24,7 @@ require('lazy').setup('plugins')
 vim.opt.encoding = 'utf-8'
 vim.opt.compatible = false
 vim.opt.autoindent = true
-vim.opt.fileformat = unix
+vim.opt.fileformat = 'unix'
 vim.opt.ts = 2 -- indent by 2 spaces
 vim.opt.shiftwidth = 2
 vim.opt.number = true
