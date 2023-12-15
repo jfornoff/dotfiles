@@ -6,7 +6,6 @@ return {
       'neovim/nvim-lspconfig',
       config = function()
         local lspconfig = require('lspconfig')
-
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         -- LSP config for Rust
@@ -51,20 +50,42 @@ return {
     ---- for command line
     'hrsh7th/cmp-cmdline',
     ---- for available snippets
-    'SirVer/ultisnips',
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = { "saadparwaiz1/cmp_luasnip" },
+      config = function()
+        ls = require('luasnip')
+        require("luasnip.loaders.from_snipmate").load()
+
+        ls.config.set_config({
+          history = true
+        })
+        vim.keymap.set({ 'i', 's' }, '<c-s>', function()
+          if ls.expand_or_jumpable() then
+            ls.expand_or_jump()
+          end
+        end)
+
+        vim.keymap.set({ 'i', 's' }, '<c-j>', function()
+          if ls.jumpable(-1) then
+            ls.jump(-1)
+          end
+        end)
+      end
+    },
     'honza/vim-snippets',
-    'quangnguyen30192/cmp-nvim-ultisnips',
   },
   config = function()
     vim.opt.completeopt = 'menu,menuone,noselect'
 
     local cmp = require('cmp')
     local lspkind = require('lspkind')
+    local luasnip = require('luasnip')
 
     cmp.setup({
       snippet = {
         expand = function(args)
-          vim.fn["UltiSnips#Anon"](args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       window = {
@@ -93,7 +114,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'ultisnips' },
+        { name = 'luasnip' },
       }, {
         { name = 'buffer' },
       }),
