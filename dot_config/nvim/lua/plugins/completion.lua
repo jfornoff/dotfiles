@@ -23,15 +23,13 @@ return {
         }
 
         -- LSP config for Lua
+        require("neodev").setup({})
         lspconfig.lua_ls.setup({})
       end
     },
     ----- For Lua
     {
       'folke/neodev.nvim',
-      config = function()
-        require("neodev").setup()
-      end
     },
     ---- Pictograms for the type of completions
     {
@@ -54,7 +52,7 @@ return {
       'L3MON4D3/LuaSnip',
       dependencies = { "saadparwaiz1/cmp_luasnip" },
       config = function()
-        ls = require('luasnip')
+        local ls = require('luasnip')
         require("luasnip.loaders.from_snipmate").load()
 
         ls.config.set_config({
