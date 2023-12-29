@@ -125,7 +125,7 @@ return {
           maxwidth = 40, -- half max width
           menu = {
             buffer = "[buffer]",
-            nvim_lsp = "[CiderLSP]",
+            nvim_lsp = "[LSP]",
             nvim_lua = "[API]",
             path = "[path]",
             ultisnips = "[snip]",
