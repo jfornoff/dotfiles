@@ -41,6 +41,8 @@ return {
     -- Code completion
     ---- via LSP
     'hrsh7th/cmp-nvim-lsp',
+    ---- Show function parameters when writing a call
+    "hrsh7th/cmp-nvim-lsp-signature-help",
     ---- from local buffer words
     'hrsh7th/cmp-buffer',
     ---- for file paths
@@ -112,6 +114,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip' },
       }, {
         { name = 'buffer' },
@@ -121,20 +124,16 @@ return {
       },
       formatting = {
         format = lspkind.cmp_format({
-          with_text = true,
-          maxwidth = 40, -- half max width
+          mode = 'symbol',
+          maxwidth = 50,
           menu = {
-            buffer = "[buffer]",
+            buffer = "[buf]",
             nvim_lsp = "[LSP]",
             nvim_lua = "[API]",
             path = "[path]",
             ultisnips = "[snip]",
           },
         }),
-      },
-      experimental = {
-        native_menu = false,
-        ghost_text = true,
       },
     })
 
