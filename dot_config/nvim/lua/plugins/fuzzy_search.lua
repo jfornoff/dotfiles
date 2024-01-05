@@ -4,7 +4,7 @@ return {
   tag = '0.1.5',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'fhill2/telescope-ultisnips.nvim',
+    'benfowler/telescope-luasnip.nvim',
   },
   config = function()
     local telescope = require('telescope')
@@ -23,14 +23,15 @@ return {
       }
     })
 
-    telescope.load_extension('ultisnips')
+    telescope.load_extension('luasnip')
 
-    vim.keymap.set('n', '<leader>f', telescope_builtin.find_files, {})
-    vim.keymap.set('n', '<leader>g', telescope_builtin.git_files, {})
-    vim.keymap.set('n', '<leader>h', telescope_builtin.buffers, {})
-    vim.keymap.set('n', '<leader>j', telescope_builtin.jumplist, {})
-    vim.keymap.set('n', '<leader>k', telescope_builtin.keymaps, {})
-    vim.keymap.set('n', '<leader>s', telescope.extensions.ultisnips.ultisnips, {})
-    vim.keymap.set('n', '\\', telescope_builtin.live_grep, {})
+    local dropdown_theme = require('telescope.themes').get_dropdown()
+    vim.keymap.set('n', '<leader>f', function() telescope_builtin.find_files(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>g', function() telescope_builtin.git_files(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>h', function() telescope_builtin.buffers(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>j', function() telescope_builtin.jumplist(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>k', function() telescope_builtin.keymaps(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>s', function() telescope.extensions.luasnip.luasnip(dropdown_theme) end)
+    vim.keymap.set('n', '\\', function() telescope_builtin.live_grep(dropdown_theme) end)
   end
 }
