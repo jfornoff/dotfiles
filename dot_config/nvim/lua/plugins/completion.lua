@@ -52,7 +52,10 @@ return {
     ---- for available snippets
     {
       'L3MON4D3/LuaSnip',
-      dependencies = { "saadparwaiz1/cmp_luasnip" },
+      dependencies = {
+        'saadparwaiz1/cmp_luasnip',
+        'honza/vim-snippets',
+      },
       config = function()
         local ls = require('luasnip')
         require("luasnip.loaders.from_snipmate").load()
@@ -73,7 +76,6 @@ return {
         end)
       end
     },
-    'honza/vim-snippets',
   },
   config = function()
     vim.opt.completeopt = 'menu,menuone,noselect'
