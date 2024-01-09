@@ -12,7 +12,6 @@ return {
     local telescope = require('telescope')
     local telescope_builtin = require('telescope.builtin')
     local telescope_actions = require('telescope.actions')
-    local dropdown_theme = require('telescope.themes').get_dropdown()
 
     telescope.setup({
       defaults = {
@@ -22,22 +21,26 @@ return {
             ["<C-k>"] = telescope_actions.move_selection_previous,
             ["<C-j>"] = telescope_actions.move_selection_next,
           }
-        }
+        },
+        layout_strategy = "vertical",
+        layout_config = { preview_cutoff = 1, height = 0.99, width = 0.99 }
       },
       extensions = {
-        ["ui-select"] = dropdown_theme
+        ["ui-select"] = require('telescope.themes').get_cursor()
       }
     })
 
     telescope.load_extension('luasnip')
     telescope.load_extension("ui-select")
 
-    vim.keymap.set('n', '<leader>f', function() telescope_builtin.find_files(dropdown_theme) end)
-    vim.keymap.set('n', '<leader>g', function() telescope_builtin.git_files(dropdown_theme) end)
-    vim.keymap.set('n', '<leader>h', function() telescope_builtin.buffers(dropdown_theme) end)
-    vim.keymap.set('n', '<leader>j', function() telescope_builtin.jumplist(dropdown_theme) end)
-    vim.keymap.set('n', '<leader>k', function() telescope_builtin.keymaps(dropdown_theme) end)
-    vim.keymap.set('n', '<leader>s', function() telescope.extensions.luasnip.luasnip(dropdown_theme) end)
-    vim.keymap.set('n', '\\', function() telescope_builtin.live_grep(dropdown_theme) end)
+    vim.keymap.set('n', '<leader>f',
+      function() telescope_builtin.find_files({ layout_strategy = "horizontal", layout_config = { preview_height = nil } }) end)
+    vim.keymap.set('n', '<leader>g', function() telescope_builtin.git_files({ layout_strategy = "horizontal" }) end)
+    vim.keymap.set('n', '<leader>h', telescope_builtin.buffers)
+    vim.keymap.set('n', '<leader>j', telescope_builtin.jumplist)
+    vim.keymap.set('n', '<leader>k', telescope_builtin.keymaps)
+    vim.keymap.set('n', '<leader>s',
+      function() telescope.extensions.luasnip.luasnip({ layout_strategy = "horizontal" }) end)
+    vim.keymap.set('n', '\\', telescope_builtin.live_grep)
   end
 }

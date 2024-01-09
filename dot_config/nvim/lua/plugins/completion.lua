@@ -159,10 +159,12 @@ return {
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
+        local telescope = require('telescope.builtin')
+
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
-        vim.keymap.set('n', '<leader>yd', vim.lsp.buf.definition)
+        vim.keymap.set('n', '<leader>yd', telescope.lsp_definitions)
         vim.keymap.set('n', '<leader>yD', vim.lsp.buf.declaration)
-        vim.keymap.set('n', '<leader>yf', vim.lsp.buf.references)
+        vim.keymap.set('n', '<leader>yf', telescope.lsp_references)
         vim.keymap.set('n', '<leader>yr', vim.lsp.buf.rename)
         vim.keymap.set('n', '<leader>ya', vim.lsp.buf.code_action)
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
