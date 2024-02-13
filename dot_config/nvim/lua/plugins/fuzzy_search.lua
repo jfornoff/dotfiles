@@ -4,7 +4,7 @@ return {
   tag = '0.1.5',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'benfowler/telescope-luasnip.nvim',
+    'fhill2/telescope-ultisnips.nvim',
     -- For example for LSP code actions.
     'nvim-telescope/telescope-ui-select.nvim',
   },
@@ -30,7 +30,7 @@ return {
       }
     })
 
-    telescope.load_extension('luasnip')
+    telescope.load_extension('ultisnips')
     telescope.load_extension("ui-select")
 
     vim.keymap.set('n', '<leader>f',
@@ -39,8 +39,8 @@ return {
     vim.keymap.set('n', '<leader>h', telescope_builtin.buffers)
     vim.keymap.set('n', '<leader>j', telescope_builtin.jumplist)
     vim.keymap.set('n', '<leader>k', telescope_builtin.keymaps)
-    vim.keymap.set('n', '<leader>s',
-      function() telescope.extensions.luasnip.luasnip({ layout_strategy = "horizontal" }) end)
+    vim.keymap.set('n', '<leader>sl',
+      function() telescope.extensions.ultisnips.ultisnips({ layout_strategy = "horizontal" }) end)
     vim.keymap.set('n', '\\', telescope_builtin.live_grep)
   end
 }

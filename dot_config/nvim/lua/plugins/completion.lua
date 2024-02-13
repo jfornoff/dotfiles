@@ -51,30 +51,10 @@ return {
     'hrsh7th/cmp-cmdline',
     ---- for available snippets
     {
-      'L3MON4D3/LuaSnip',
+      'quangnguyen30192/cmp-nvim-ultisnips',
       dependencies = {
-        'saadparwaiz1/cmp_luasnip',
-        'honza/vim-snippets',
+        'SirVer/ultisnips',
       },
-      config = function()
-        local ls = require('luasnip')
-        require("luasnip.loaders.from_snipmate").load()
-
-        ls.config.set_config({
-          history = true
-        })
-        vim.keymap.set({ 'i', 's' }, '<c-s>', function()
-          if ls.expand_or_jumpable() then
-            ls.expand_or_jump()
-          end
-        end)
-
-        vim.keymap.set({ 'i', 's' }, '<c-j>', function()
-          if ls.jumpable(-1) then
-            ls.jump(-1)
-          end
-        end)
-      end
     },
   },
   config = function()
@@ -82,12 +62,13 @@ return {
 
     local cmp = require('cmp')
     local lspkind = require('lspkind')
-    local luasnip = require('luasnip')
+    local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+
 
     cmp.setup({
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.fn["UltiSnips#Anon"](args.body)
         end,
       },
       window = {
@@ -113,11 +94,14 @@ return {
           end
         end, { 'i', 's' }),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        -- Snippets mappings
+        ['<C-s>'] = cmp.mapping(cmp_ultisnips_mappings.expand_or_jump_forwards, { 'i', 's' }),
+        ['<C-h>'] = cmp.mapping(cmp_ultisnips_mappings.jump_backwards, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip' },
+        { name = 'ultisnips' },
       }, {
         { name = 'buffer' },
       }),
