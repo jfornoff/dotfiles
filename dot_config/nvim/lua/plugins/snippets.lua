@@ -5,7 +5,10 @@ return {
   },
   config = function()
     vim.g["UltiSnipsSnippetDirectories"] = {
-      vim.fn.stdpath('config') .. '/snippets/',
+      -- From plugins
+      "UltiSnips",
+      -- Private snippets
+      vim.fn.stdpath('config') .. '/snip/',
     }
     vim.keymap.set('n', '<leader>se', ':UltiSnipsEdit')
   end
