@@ -25,6 +25,9 @@ return {
         -- LSP config for Lua
         require("neodev").setup({})
         lspconfig.lua_ls.setup({})
+
+        -- LSP config for Bash
+        lspconfig.bashls.setup({})
       end
     },
     ----- For Lua
