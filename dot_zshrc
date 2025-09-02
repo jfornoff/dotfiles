@@ -4,7 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 # oh-my-ZSH configuration.
 ZSH_THEME="avit"
 DISABLE_AUTO_TITLE="true"
-plugins=(asdf vi-mode fzf fasd git dotenv)
+plugins=(asdf vi-mode fzf git dotenv zoxide)
 source $ZSH/oh-my-zsh.sh
 
 # VI Mode
