@@ -58,9 +58,8 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Custom functions
-## better zz from fasd
-unalias zz
+## better zz from zoxide
 function zz() {
   local dir
-  dir="$(fasd -Rdl "$*" | fzf --query="$*" -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+  dir="$(zoxide query -i "$*")" && cd "${dir}" || return 1
 }
