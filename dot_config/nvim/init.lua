@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- keybindings will be off.
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
--- Install all plugins based on files in config/nvim/plugins/*.lua
+-- Install all plugins based on files in ~/.config/nvim/lua/plugins/*.lua
 require('lazy').setup('plugins')
 
 -- General settings {{{
