@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+echo "Writing macOS system settings..."
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+defaults write NSGlobalDomain KeyRepeat -int 2
+echo "Note: KeyRepeat setting may require a logout/login to take effect."
+{{- end }}

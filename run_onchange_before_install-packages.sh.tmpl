@@ -1,0 +1,119 @@
+#!/bin/bash
+set -euo pipefail
+
+# --- Colors ---
+COLOR_RESET='\033[0m'
+COLOR_GREEN='\033[0;32m'
+COLOR_YELLOW='\033[0;33m'
+COLOR_BLUE='\033[0;34m'
+COLOR_CYAN='\033[0;36m'
+
+# --- Helper Functions ---
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+print_header() {
+    echo -e "
+${COLOR_BLUE}--- $1 ---${COLOR_RESET}"
+}
+
+print_success() {
+    echo -e "${COLOR_GREEN}✔ $1${COLOR_RESET}"
+}
+
+print_info() {
+    echo -e "${COLOR_CYAN}ℹ $1${COLOR_RESET}"
+}
+
+print_warning() {
+    echo -e "${COLOR_YELLOW}⚠ $1${COLOR_RESET}"
+}
+
+# --- Package Lists ---
+COMMON_PACKAGES=(
+    fzf
+    neovim
+    ripgrep
+    tmux
+    tree
+    zoxide
+    zsh
+)
+
+MACOS_BREW_PACKAGES=(
+    reattach-to-user-namespace
+)
+
+MACOS_CASK_PACKAGES=(
+    alfred
+    arq
+    bitwarden
+    font-fira-code
+    iterm2
+    rectangle
+    spotify
+)
+
+# --- OS Detection & Installation ---
+{{ if eq .chezmoi.os "linux" -}}
+    print_header "Detected Linux"
+    if command_exists apt;
+        then
+        print_info "Updating apt..."
+        sudo apt update
+
+        print_info "Installing common packages with apt..."
+        # Note: asdf might need different installation methods on Linux
+        # asdf: Usually installed via git clone
+        sudo apt install -y \
+            fzf \
+            neovim \
+            ripgrep \
+            tmux \
+            tree \
+            zoxide \
+            zsh
+        print_success "Common packages installed."
+    else
+        print_warning "apt not found. This script only supports Debian-based Linux distributions."
+        exit 1
+    fi
+{{ else if eq .chezmoi.os "darwin" -}}
+    print_header "Detected macOS"
+    if ! command_exists brew;
+        then
+        print_info "Homebrew not found. Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        # Add Homebrew to PATH for the current script execution
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        print_success "Homebrew installed."
+    else
+        print_info "Homebrew is already installed."
+    fi
+
+    print_info "Updating Homebrew..."
+    brew update
+    print_success "Homebrew updated."
+
+    print_info "Tapping homebrew/cask-fonts..."
+    brew tap homebrew/cask-fonts
+    print_success "Tapped homebrew/cask-fonts."
+
+    print_info "Installing common packages with Homebrew..."
+    brew install "${COMMON_PACKAGES[@]}"
+    print_success "Common packages installed."
+
+    print_info "Installing macOS-specific packages with Homebrew..."
+    brew install "${MACOS_BREW_PACKAGES[@]}"
+    print_success "macOS-specific packages installed."
+
+    print_info "Installing macOS-only applications with Homebrew Cask..."
+    brew install --cask "${MACOS_CASK_PACKAGES[@]}"
+    print_success "macOS-only applications installed."
+{{ else -}}
+    print_warning "Unsupported operating system: {{ .chezmoi.os }}"
+    exit 1
+{{ end -}}
+
+print_header "Prerequisite installation complete"
