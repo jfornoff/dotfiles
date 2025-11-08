@@ -96,10 +96,6 @@ MACOS_CASK_PACKAGES=(
     brew update
     print_success "Homebrew updated."
 
-    print_info "Tapping homebrew/cask-fonts..."
-    brew tap homebrew/cask-fonts
-    print_success "Tapped homebrew/cask-fonts."
-
     print_info "Installing common packages with Homebrew..."
     brew install "${COMMON_PACKAGES[@]}"
     print_success "Common packages installed."
