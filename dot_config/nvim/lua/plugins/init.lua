@@ -1,6 +1,7 @@
 return {
   -- Tool dependency management
   'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
   -- Syntax highlighting.
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   -- Jumping between related files.

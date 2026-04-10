@@ -5,34 +5,37 @@ return {
     {
       'neovim/nvim-lspconfig',
       config = function()
-        local lspconfig = require('lspconfig')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-        -- LSP config for Rust
-        lspconfig.rust_analyzer.setup {
-          capabilities = capabilities,
+        -- 2. Define a helper to make the new syntax less verbose
+        local function setup_server(name, opts)
+          opts = opts or {}
+          opts.capabilities = vim.tbl_deep_extend('force', capabilities, opts.capabilities or {})
+
+          -- The new Neovim 0.11+ way
+          vim.lsp.config(name, opts)
+          vim.lsp.enable(name)
+        end
+
+        -- --- LSP CONFIGURATIONS ---
+        setup_server('rust_analyzer', {
           settings = {
             ["rust-analyzer"] = {
               cargo = {
-                buildScripts = {
-                  enable = true,
-                },
+                buildScripts = { enable = true },
               },
-            }
+            },
           }
-        }
-
-        -- LSP config for Lua
-        require("neodev").setup({})
-        lspconfig.lua_ls.setup({})
-
-        -- LSP config for Bash
-        lspconfig.bashls.setup({})
+        })
+        setup_server('lua_ls')
+        setup_server('bashls')
+        setup_server('yamlls')
       end
     },
     ----- For Lua
     {
-      'folke/neodev.nvim',
+      'folke/lazydev.nvim',
+      ft = 'lua',
     },
     ---- Pictograms for the type of completions
     {
@@ -60,6 +63,13 @@ return {
       },
     },
   },
+  opts = function(_, opts)
+    opts.sources = opts.sources or {}
+    table.insert(opts.sources, {
+      name = "lazydev",
+      group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+    })
+  end,
   config = function()
     vim.opt.completeopt = 'menu,menuone,noselect'
 

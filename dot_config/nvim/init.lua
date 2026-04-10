@@ -55,4 +55,9 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- }}}
 
 require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'yamlls',
+  },
+})
 require('keybindings')
