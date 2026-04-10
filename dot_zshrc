@@ -7,7 +7,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 # oh-my-ZSH configuration.
 ZSH_THEME="avit"
 DISABLE_AUTO_TITLE="true"
-plugins=(asdf vi-mode fzf git dotenv zoxide)
+plugins=(asdf vi-mode fzf git direnv dotenv zoxide)
 source $ZSH/oh-my-zsh.sh
 
 # VI Mode
