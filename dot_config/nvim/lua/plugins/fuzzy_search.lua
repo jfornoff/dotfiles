@@ -1,7 +1,7 @@
 -- Fuzzy search for ~everything.
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.5',
+  tag = 'v0.2.2',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'fhill2/telescope-ultisnips.nvim',
