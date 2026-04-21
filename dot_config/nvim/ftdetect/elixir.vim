@@ -19,5 +19,3 @@ function! s:addProjectionistTransformations()
 endfunction
 
 autocmd User ProjectionistActivate call s:addProjectionistTransformations()
-
-let b:ale_linters = ['elixir-ls']
