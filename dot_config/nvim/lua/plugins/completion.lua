@@ -148,6 +148,10 @@ return {
       })
     })
 
+    -- Teach cmp about autopairs so confirming a completion doesn't leave a duplicate closing bracket
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         local telescope = require('telescope.builtin')

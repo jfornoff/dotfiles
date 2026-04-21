@@ -18,5 +18,9 @@ return {
     end
   },
   -- Auto-close parentheses.
-  'jiangmiao/auto-pairs',
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {},
+  },
 }
