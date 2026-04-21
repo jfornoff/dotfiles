@@ -7,6 +7,8 @@ return {
     'fhill2/telescope-ultisnips.nvim',
     -- For example for LSP code actions.
     'nvim-telescope/telescope-ui-select.nvim',
+    -- Native C sorter — much faster fuzzy matching on large repos.
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
     local telescope = require('telescope')
@@ -30,6 +32,7 @@ return {
       }
     })
 
+    telescope.load_extension('fzf')
     telescope.load_extension('ultisnips')
     telescope.load_extension("ui-select")
 
