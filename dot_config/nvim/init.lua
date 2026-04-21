@@ -51,7 +51,7 @@ vim.cmd('runtime macros/matchit.vim') -- use % to jump between start/end of meth
 
 -- Fold settings {{{
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- }}}
 
 require('mason').setup()
