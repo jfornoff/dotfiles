@@ -63,13 +63,6 @@ return {
       },
     },
   },
-  opts = function(_, opts)
-    opts.sources = opts.sources or {}
-    table.insert(opts.sources, {
-      name = "lazydev",
-      group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-    })
-  end,
   config = function()
     vim.opt.completeopt = 'menu,menuone,noselect'
 
@@ -112,6 +105,7 @@ return {
         ['<C-h>'] = cmp.mapping(cmp_ultisnips_mappings.jump_backwards, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
+        { name = 'lazydev', group_index = 0 }, -- skip LuaLS completions when lazydev is active
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'ultisnips' },
