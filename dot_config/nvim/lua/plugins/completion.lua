@@ -112,9 +112,6 @@ return {
       }, {
         { name = 'buffer' },
       }),
-      sorting = {
-        comparators = {}, -- We stop all sorting to let the lsp do the sorting
-      },
       formatting = {
         format = lspkind.cmp_format({
           mode = 'symbol',
