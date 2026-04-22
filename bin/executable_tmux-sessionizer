@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#
+# tmux-sessionizer: fuzzy-jump to a project session, creating it if needed.
+#
+# USAGE
+#   Triggered via C-a f from inside tmux.
+#   An fzf picker opens over your project directories.
+#   Type to filter, Enter to jump. Escape cancels with no effect.
+#
+# HOW IT WORKS
+#   - Searches PROJECT_ROOTS (one level deep) for directories.
+#   - Derives a session name from the directory basename.
+#   - If a tmux session with that name exists, switches to it.
+#   - If not, creates a new session rooted at that directory, then switches.
+#
+# CUSTOMISATION
+#   Edit PROJECT_ROOTS to match where you keep your code. Multiple paths are
+#   space-separated. Directories that don't exist are silently skipped.
+#
+PROJECT_ROOTS="$HOME/projects $HOME/code $HOME/dev $HOME/work"
+
+selected=$(find $PROJECT_ROOTS -mindepth 1 -maxdepth 1 -type d 2>/dev/null \
+    | sort \
+    | fzf --prompt="project: " --height=40% --reverse)
+
+[[ -z $selected ]] && exit 0
+
+session_name=$(basename "$selected" | tr '.' '_' | tr ' ' '_')
+
+if ! tmux has-session -t "=$session_name" 2>/dev/null; then
+    tmux new-session -ds "$session_name" -c "$selected"
+fi
+
+if [[ -n $TMUX ]]; then
+    tmux switch-client -t "=$session_name"
+else
+    tmux attach-session -t "=$session_name"
+fi
