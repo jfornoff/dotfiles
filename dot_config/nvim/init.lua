@@ -47,7 +47,8 @@ vim.opt.modelines = 1                 -- Allow settings from vim comments in fil
 vim.cmd('runtime macros/matchit.vim') -- use % to jump between start/end of methods
 -- }}}
 
--- Fold settings {{{\nvim.opt.foldmethod = "expr"
+-- Fold settings {{{
+vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
 -- }}}
