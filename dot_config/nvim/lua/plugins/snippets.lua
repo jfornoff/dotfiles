@@ -10,6 +10,6 @@ return {
       -- Private snippets
       vim.fn.stdpath('config') .. '/snip/',
     }
-    vim.keymap.set('n', '<leader>se', ':UltiSnipsEdit')
+    vim.keymap.set('n', '<leader>se', ':UltiSnipsEdit<CR>')
   end
 }
