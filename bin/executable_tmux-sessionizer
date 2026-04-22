@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# tmux-sessionizer: switch to an existing session or create a new one by name.
+#
+# Existing sessions appear in the picker — select one to switch, or type a
+# new name and press Enter to create it. Escape cancels.
+
+result=$(tmux list-sessions -F "#{session_name}" 2>/dev/null \
+    | fzf --prompt="session: " --print-query --height=40% --reverse)
+
+[[ -z $result ]] && exit 0
+
+query=$(echo "$result" | head -1)
+match=$(echo "$result" | sed -n '2p')
+session_name=${match:-$query}
+
+[[ -z $session_name ]] && exit 0
+
+if ! tmux has-session -t "=$session_name" 2>/dev/null; then
+    tmux new-session -ds "$session_name"
+fi
+
+if [[ -n $TMUX ]]; then
+    tmux switch-client -t "=$session_name"
+else
+    tmux attach-session -t "=$session_name"
+fi
