@@ -9,6 +9,8 @@ return {
       virtual_text = false,
     })
     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end)
+    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end)
   end,
   keys = {
     { "<leader>dt", "<cmd>Trouble diagnostics toggle<cr>", desc = "Toggle diagnostics" }
