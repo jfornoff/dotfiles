@@ -64,16 +64,7 @@ MACOS_CASK_PACKAGES=(
         sudo apt update
 
         print_info "Installing common packages with apt..."
-        # Note: asdf might need different installation methods on Linux
-        # asdf: Usually installed via git clone
-        sudo apt install -y \
-            fzf \
-            neovim \
-            ripgrep \
-            tmux \
-            tree \
-            zoxide \
-            zsh
+        sudo apt install -y "${COMMON_PACKAGES[@]}"
         print_success "Common packages installed."
     else
         print_warning "apt not found. This script only supports Debian-based Linux distributions."
