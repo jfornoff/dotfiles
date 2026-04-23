@@ -166,8 +166,6 @@ return {
         vim.keymap.set('n', '<leader>yf', telescope.lsp_references, buf)
         vim.keymap.set('n', '<leader>yr', vim.lsp.buf.rename, buf)
         vim.keymap.set('n', '<leader>ya', vim.lsp.buf.code_action, buf)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, buf)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, buf)
         vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 
         -- Autoformat on save
