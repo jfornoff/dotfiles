@@ -25,9 +25,11 @@ require('lazy').setup({
 })
 
 -- General settings {{{
+vim.opt.encoding = 'utf-8'
+vim.opt.compatible = false
 vim.opt.autoindent = true
 vim.opt.fileformat = 'unix'
-vim.opt.tabstop = 2 -- indent by 2 spaces
+vim.opt.ts = 2 -- indent by 2 spaces
 vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.ttimeoutlen = 100             -- 100ms to type more command characters
@@ -37,7 +39,7 @@ vim.opt.ignorecase = true             -- ignore case in search
 vim.opt.hlsearch = true               -- highlight all search matches
 vim.opt.smartcase = true              -- pay attention to case when caps are used
 vim.opt.incsearch = true              -- show search results as I type
-vim.opt.visualbell = true             -- enable visual bell (disable audio bell)
+vim.opt.vb = true                     -- enable visual bell (disable audio bell)
 vim.opt.scrolloff = 2                 -- minimum visible lines around cursor when scrolling
 vim.opt.list = true                   -- show tabs / trailing spaces
 vim.opt.listchars = 'tab:»·,trail:·'
@@ -50,7 +52,13 @@ vim.cmd('runtime macros/matchit.vim') -- use % to jump between start/end of meth
 -- Fold settings {{{
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevelstart = 99
+-- }}}
+
+-- Diagnostics {{{
+vim.diagnostic.config({
+  virtual_lines = { current_line = true },
+  virtual_text = false,
+})
 -- }}}
 
 require('mason').setup()
