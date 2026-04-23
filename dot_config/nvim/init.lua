@@ -53,13 +53,6 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
 -- }}}
 
--- Diagnostics {{{
-vim.diagnostic.config({
-  virtual_lines = { current_line = true },
-  virtual_text = false,
-})
--- }}}
-
 require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
