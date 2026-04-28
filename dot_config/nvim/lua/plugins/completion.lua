@@ -43,12 +43,7 @@ return {
       },
     },
     ---- Pictograms for the type of completions
-    {
-      'onsails/lspkind.nvim',
-      init = function()
-        require("lspkind").init()
-      end
-    },
+    'onsails/lspkind.nvim',
     -- Code completion
     ---- via LSP
     'hrsh7th/cmp-nvim-lsp',
