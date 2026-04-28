@@ -164,9 +164,25 @@ return {
         vim.keymap.set('n', '<leader>yd', telescope.lsp_definitions, buf)
         vim.keymap.set('n', '<leader>yD', vim.lsp.buf.declaration, buf)
         vim.keymap.set('n', '<leader>yf', telescope.lsp_references, buf)
+        vim.keymap.set('n', '<leader>yi', telescope.lsp_implementations, buf)
+        vim.keymap.set('n', '<leader>yt', telescope.lsp_type_definitions, buf)
+        vim.keymap.set('n', '<leader>ys', telescope.lsp_document_symbols, buf)
+        vim.keymap.set('n', '<leader>yS', telescope.lsp_dynamic_workspace_symbols, buf)
         vim.keymap.set('n', '<leader>yr', vim.lsp.buf.rename, buf)
         vim.keymap.set('n', '<leader>ya', vim.lsp.buf.code_action, buf)
+        vim.keymap.set('n', '<leader>yc', vim.lsp.buf.incoming_calls, buf)
+        vim.keymap.set('n', '<leader>yC', vim.lsp.buf.outgoing_calls, buf)
+        vim.keymap.set('n', '<leader>yl', vim.lsp.codelens.run, buf)
         vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.supports_method('textDocument/codeLens') then
+          vim.lsp.codelens.refresh({ bufnr = args.buf })
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
+            buffer = args.buf,
+            callback = function() vim.lsp.codelens.refresh({ bufnr = args.buf }) end,
+          })
+        end
 
         -- Autoformat on save
         vim.api.nvim_create_autocmd("BufWritePre", {
