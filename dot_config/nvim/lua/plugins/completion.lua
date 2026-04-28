@@ -164,8 +164,14 @@ return {
         vim.keymap.set('n', '<leader>yd', telescope.lsp_definitions, buf)
         vim.keymap.set('n', '<leader>yD', vim.lsp.buf.declaration, buf)
         vim.keymap.set('n', '<leader>yf', telescope.lsp_references, buf)
+        vim.keymap.set('n', '<leader>yi', telescope.lsp_implementations, buf)
+        vim.keymap.set('n', '<leader>yt', telescope.lsp_type_definitions, buf)
+        vim.keymap.set('n', '<leader>ys', telescope.lsp_document_symbols, buf)
+        vim.keymap.set('n', '<leader>yS', telescope.lsp_dynamic_workspace_symbols, buf)
         vim.keymap.set('n', '<leader>yr', vim.lsp.buf.rename, buf)
         vim.keymap.set('n', '<leader>ya', vim.lsp.buf.code_action, buf)
+        vim.keymap.set('n', '<leader>yc', vim.lsp.buf.incoming_calls, buf)
+        vim.keymap.set('n', '<leader>yC', vim.lsp.buf.outgoing_calls, buf)
         vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 
         -- Autoformat on save
