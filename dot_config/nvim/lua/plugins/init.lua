@@ -1,7 +1,12 @@
 return {
   -- Tool dependency management
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
+  { 'williamboman/mason.nvim', opts = {} },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    opts = {
+      ensure_installed = { 'rust_analyzer', 'lua_ls', 'bashls', 'yamlls' },
+    },
+  },
   -- Syntax highlighting.
   {
     "nvim-treesitter/nvim-treesitter",
