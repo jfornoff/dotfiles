@@ -53,10 +53,4 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
 -- }}}
 
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    'yamlls',
-  },
-})
 require('keybindings')
