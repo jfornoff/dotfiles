@@ -183,8 +183,14 @@ return {
         -- TODO: vim.lsp.buf.format() calls every attached client that supports formatting.
         -- If a second formatting-capable client is ever added (e.g. none-ls wrapping an
         -- external tool), add a filter: vim.lsp.buf.format({ name = "rust_analyzer" })
+        --
+        -- The group is keyed per buffer so that re-attaching (e.g. after :e or an LSP
+        -- restart) clears the previous autocmd instead of appending a duplicate, which
+        -- would run format multiple times on every save.
+        local fmt_group = vim.api.nvim_create_augroup("lsp_format_" .. args.buf, { clear = true })
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = args.buf,
+          group = fmt_group,
           callback = function()
             vim.lsp.buf.format { async = false }
           end
