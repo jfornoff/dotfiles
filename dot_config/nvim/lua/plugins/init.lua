@@ -2,6 +2,10 @@ return {
   -- Tool dependency management
   { 'williamboman/mason.nvim', opts = {} },
   {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts = { ensure_installed = { 'tree-sitter-cli' } },
+  },
+  {
     'williamboman/mason-lspconfig.nvim',
     opts = {
       ensure_installed = { 'rust_analyzer', 'lua_ls', 'bashls', 'yamlls' },
@@ -10,13 +14,10 @@ return {
   -- Syntax highlighting.
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = { 'lua', 'rust', 'go', 'c', 'java', 'bash', 'yaml', 'vim', 'vimdoc' },
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
+      require('nvim-treesitter').install({ 'lua', 'rust', 'go', 'c', 'java', 'bash', 'yaml', 'vim', 'vimdoc' })
     end
   },
   -- Jumping between related files.
