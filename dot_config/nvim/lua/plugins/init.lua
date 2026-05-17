@@ -1,12 +1,12 @@
 return {
   -- Tool dependency management
-  { 'williamboman/mason.nvim', opts = {} },
+  { 'mason-org/mason.nvim', opts = {} },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     opts = { ensure_installed = { 'tree-sitter-cli' } },
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     opts = {
       ensure_installed = { 'rust_analyzer', 'lua_ls', 'bashls', 'yamlls' },
     },
