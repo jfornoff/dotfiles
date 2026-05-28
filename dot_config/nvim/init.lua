@@ -24,18 +24,21 @@ require('lazy').setup({
   }
 })
 
--- Use OSC 52 so yanks reach the Mac clipboard over SSH via iTerm2
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
+-- Over SSH, use OSC 52 so yanks travel through the connection to iTerm2 on Mac.
+-- Locally, leave vim.g.clipboard unset so nvim auto-detects pbcopy/pbpaste.
+if os.getenv('SSH_CLIENT') or os.getenv('SSH_TTY') then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+end
 vim.opt.clipboard = 'unnamedplus'
 
 -- General settings {{{
