@@ -178,17 +178,6 @@ return {
             callback = function() vim.lsp.codelens.refresh({ bufnr = args.buf }) end,
           })
         end
-
-        -- Autoformat on save
-        -- TODO: vim.lsp.buf.format() calls every attached client that supports formatting.
-        -- If a second formatting-capable client is ever added (e.g. none-ls wrapping an
-        -- external tool), add a filter: vim.lsp.buf.format({ name = "rust_analyzer" })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = args.buf,
-          callback = function()
-            vim.lsp.buf.format { async = false }
-          end
-        })
       end,
     })
   end
