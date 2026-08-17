@@ -41,17 +41,14 @@ COMMON_PACKAGES=(
     zsh
 )
 
-MACOS_BREW_PACKAGES=(
-    reattach-to-user-namespace
-)
-
 MACOS_CASK_PACKAGES=(
     alfred
-    arq
     bitwarden
-    font-fira-code
+    font-fira-code-nerd-font
     iterm2
+    obsidian
     rectangle
+    sensiblesidebuttons
     spotify
 )
 
@@ -90,10 +87,6 @@ MACOS_CASK_PACKAGES=(
     print_info "Installing common packages with Homebrew..."
     brew install "${COMMON_PACKAGES[@]}"
     print_success "Common packages installed."
-
-    print_info "Installing macOS-specific packages with Homebrew..."
-    brew install "${MACOS_BREW_PACKAGES[@]}"
-    print_success "macOS-specific packages installed."
 
     print_info "Installing macOS-only applications with Homebrew Cask..."
     brew install --cask "${MACOS_CASK_PACKAGES[@]}"
