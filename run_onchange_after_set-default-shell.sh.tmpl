@@ -1,0 +1,37 @@
+#!/bin/bash
+set -euo pipefail
+
+{{ template "helpers.sh" . }}
+
+# --- Ensure Homebrew environment on macOS if available ---
+{{ if eq .chezmoi.os "darwin" -}}
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+{{- end }}
+
+# --- Set Default Shell to Zsh ---
+print_header "Configuring Default Login Shell"
+
+if command_exists zsh; then
+    ZSH_PATH="$(which zsh)"
+    if [ "$SHELL" != "$ZSH_PATH" ]; then
+        print_info "Setting default shell to Zsh ($ZSH_PATH)..."
+{{ if eq .chezmoi.os "darwin" -}}
+        if ! grep -qxF "$ZSH_PATH" /etc/shells; then
+            print_info "Adding $ZSH_PATH to /etc/shells..."
+            echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+        fi
+        chsh -s "$ZSH_PATH"
+{{ else if eq .chezmoi.os "linux" -}}
+        chsh -s "$ZSH_PATH"
+{{ end -}}
+        print_success "Default shell changed to Zsh."
+    else
+        print_info "Default shell is already Zsh ($ZSH_PATH)."
+    fi
+else
+    print_warning "Zsh is not installed. Skipping shell change."
+fi
